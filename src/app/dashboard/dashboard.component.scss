@@ -1,0 +1,27 @@
+.example-container {
+    height: 100vh;
+    border: 1px solid;
+}
+
+.example-sidenav-content {
+    height: 100%;
+}
+
+.example-sidenav {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.logo {
+    width: 200px;
+}
+
+.button-menu {
+    display: flex;
+    flex-direction: column;
+}
