@@ -9,8 +9,7 @@ import { HomeModule } from './pages/home/home.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgIf } from '@angular/common';
 import { UsersModule } from './pages/users/users.module';
-
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +24,7 @@ import { UsersModule } from './pages/users/users.module';
     MatMenuModule,
     HomeModule,
     UsersModule,
+    SharedModule,
     NgIf,
   ],
   exports: [

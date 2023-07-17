@@ -13,6 +13,7 @@ import { FormDialogComponent } from './components/user-form-dialog/form-dialog.c
 import { MatSelectModule } from '@angular/material/select';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { MatTableModule } from '@angular/material/table';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
     MatSelectModule,
     MatTableModule,
+    SharedModule,
     NgIf
   ],
   exports: [

@@ -1,5 +1,5 @@
 <mat-stepper class="mat-stepper" linear #stepper>
-    <mat-step class="mat-step">[hasError]="!firstStepComplete" [completed]="firstStepComplete"
+    <mat-step class="mat-step" [hasError]="!firstStepComplete" [completed]="firstStepComplete">
         <form [formGroup]="userForm" class="form">
             <ng-template matStepLabel>Datos personales</ng-template>
             <mat-form-field class="mat-form" appearance="outline">
@@ -26,7 +26,7 @@
             </div>
         </form>
     </mat-step>
-    <mat-step>[completed]="secondStepComplete"
+    <mat-step [completed]="secondStepComplete">
         <form [formGroup]="userForm" class="form">
             <ng-template matStepLabel>Creá el usuario</ng-template>
             <mat-form-field class="mat-form" appearance="outline">
@@ -54,7 +54,7 @@
             </div>
         </form>
     </mat-step>
-    <mat-step>[completed]="thirdStepComplete"
+    <mat-step [completed]="thirdStepComplete">
         <form [formGroup]="userForm" class="form">
             <ng-template matStepLabel>Elegí el tipo de usuario</ng-template>
             <mat-form-field class="mat-form" appearance="outline">
@@ -75,16 +75,16 @@
         <p style="font-weight: 500; text-align: center; font-size: 1rem;">Los datos declarados son:</p>
         <div class="data-form">
             <div style="display: flex; justify-content: space-around; flex-direction: column;">
-                <p>Nombre: {{userForm.value.name}}</p>
-                <p>Apellido: {{userForm.value.surname}}</p>
-                <p>Teléfono: {{userForm.value.phone}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Nombre:</span> {{userForm.value.name}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Apellido:</span> {{userForm.value.surname}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Teléfono:</span> {{userForm.value.phone}}</p>
             </div>
             <div style="display: flex; justify-content: space-around; flex-direction: column;">
-                <p>Usuario: {{userForm.value.email}}</p>
-                <p>Contraseña: {{userForm.value.password}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Usuario:</span> {{userForm.value.email}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Contraseña:</span> {{userForm.value.password}}</p>
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
-                <p>Tipo de usuario: {{userForm.value.userType}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Tipo de usuario:</span> {{userForm.value.userType}}</p>
             </div>
         </div>
         <div class="btn-form">
@@ -93,71 +93,3 @@
         </div>
     </mat-step>
 </mat-stepper>
-
-<!--pre style="text-align: center; font-size: large;">{{ userForm.value | json}}</pre!-->
-
-<!--div>
-    <form class="example-form">
-        <div class="name-lastName-phone">
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td><p>
-                        <mat-form-field class="name" appearance="outline">
-                            <mat-label>Nombre</mat-label>
-                            <input matInput placeholder="Nombre" [formControl]="name" required>
-                            <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
-                            <mat-icon matSuffix>badge</mat-icon>
-                            <mat-hint>Ej: Martín.</mat-hint>
-                        </mat-form-field>
-                    </p></td>
-                    <td><p>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Apellido</mat-label>
-                            <input matInput placeholder="Nombre" [formControl]="surname" required>
-                            <mat-error *ngIf="surname.invalid">{{getErrorMessage()}}</mat-error>
-                            <mat-icon matSuffix>badge</mat-icon>
-                            <mat-hint>Ej: Gómez.</mat-hint>
-                        </mat-form-field>
-                    </p></td>
-                    <td><p>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Teléfono</mat-label>
-                            <span matPrefix> &nbsp;&nbsp;+54 &nbsp;</span>
-                            <input type="tel" matInput placeholder="11 5412 8888" [formControl]="phone" required>
-                            <mat-error *ngIf="phone.invalid">{{getErrorMessage()}}</mat-error>
-                            <mat-icon matSuffix>phone</mat-icon>
-                            <mat-hint>Sin 0 y sin 15</mat-hint>
-                        </mat-form-field>
-                    </p>
-                </tr>
-            </table>
-        </div>
-        <div class="email-pass">
-            <div class="example-container">
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="pat@example.com" [formControl]="email" required>
-                        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-                        <mat-icon matSuffix>
-                            <span class="material-symbols-outlined">mail</span>
-                        </mat-icon>
-                        <mat-hint>Tu email será tu usuario</mat-hint>
-                    </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Contraseña</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" required>
-                        <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                            [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                        <mat-hint>Debe contener una mayúscula, una minúscula y un número.</mat-hint>
-                    </mat-form-field>
-                </p>
-            </div>
-        </div>
-    </form>
-</div!-->
