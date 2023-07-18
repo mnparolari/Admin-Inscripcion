@@ -13,12 +13,14 @@
     flex-direction: column;
 }
 
+
 .example-spacer {
     flex: 1 1 auto;
 }
 
 .logo {
     width: 200px;
+    border-radius: 5%;
 }
 
 .button-menu {
