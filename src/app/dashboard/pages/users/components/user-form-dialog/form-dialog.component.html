@@ -1,20 +1,20 @@
 <mat-stepper class="mat-stepper" linear #stepper>
-    <mat-step class="mat-step" [hasError]="!firstStepComplete" [completed]="firstStepComplete">
+    <mat-step color="accent" [hasError]="!firstStepComplete" [completed]="firstStepComplete">
         <form [formGroup]="userForm" class="form">
             <ng-template matStepLabel>Datos personales</ng-template>
-            <mat-form-field class="mat-form" appearance="outline">
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <mat-label>Nombre</mat-label>
-                <input matInput [formControl]="name" name="name" required>
+                <input  matInput [formControl]="name" name="name" required>
                 <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
                 <mat-icon matSuffix>badge</mat-icon>
             </mat-form-field>
-            <mat-form-field class="mat-form" appearance="outline">
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <mat-label>Apellido</mat-label>
                 <input matInput [formControl]="surname" name="surname" required>
                 <mat-error *ngIf="surname.invalid">{{getErrorMessage()}}</mat-error>
                 <mat-icon matSuffix>badge</mat-icon>
             </mat-form-field>
-            <mat-form-field class="mat-form" appearance="outline">
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <span matPrefix> &nbsp;&nbsp;+54 &nbsp;</span>
                 <input type="tel" matInput placeholder="11 5412 8888" [formControl]="phone" name="phone" required>
                 <mat-error *ngIf="phone.invalid">{{getErrorMessage()}}</mat-error>
@@ -22,14 +22,14 @@
                 <mat-hint>Sin 0 y sin 15</mat-hint>
             </mat-form-field>
             <div class="btn-form">
-                <button mat-flat-button color="primary" matStepperNext>Siguiente</button>
+                <button mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
-    <mat-step [completed]="secondStepComplete">
+    <mat-step color="accent" [completed]="secondStepComplete">
         <form [formGroup]="userForm" class="form">
             <ng-template matStepLabel>Creá el usuario</ng-template>
-            <mat-form-field class="mat-form" appearance="outline">
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput placeholder="pat@example.com" [formControl]="email" required>
                 <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
@@ -38,7 +38,7 @@
                 </mat-icon>
                 <mat-hint>Tu email será tu usuario</mat-hint>
             </mat-form-field>
-            <mat-form-field class="mat-form" appearance="outline">
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <mat-label>Contraseña</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" name="password" required>
                 <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
@@ -49,15 +49,15 @@
                 <mat-hint>Entre 8 y 15 carácteres.</mat-hint>
             </mat-form-field>
             <div class="btn-form" >
-                <button class="btn-previous" mat-flat-button color="primary" matStepperPrevious>Anterior</button>
-                <button class="btn-next" mat-flat-button color="primary" matStepperNext>Siguiente</button>
+                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
+                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
-    <mat-step [completed]="thirdStepComplete">
+    <mat-step color="accent" [completed]="thirdStepComplete">
         <form [formGroup]="userForm" class="form">
             <ng-template matStepLabel>Elegí el tipo de usuario</ng-template>
-            <mat-form-field class="mat-form" appearance="outline">
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <mat-label>Opciones</mat-label>
                 <mat-select [formControl]="userType" name="userType" required>
                     <mat-option value={{type}} *ngFor="let type of types">{{type}}</mat-option>
@@ -65,12 +65,12 @@
                 <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
             <div class="btn-form" color="primary">
-                <button class="btn-previous" mat-flat-button color="primary" matStepperPrevious>Anterior</button>
-                <button class="btn-next" mat-flat-button color="primary" matStepperNext>Siguiente</button>
+                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
+                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
-    <mat-step class="data-form">
+    <mat-step color="accent" class="data-form">
         <ng-template matStepLabel>Confirmación</ng-template>
         <p style="font-weight: 500; text-align: center; font-size: 1rem;">Los datos declarados son:</p>
         <div class="data-form">
@@ -88,8 +88,8 @@
             </div>
         </div>
         <div class="btn-form">
-            <button class="btn-previous" mat-flat-button color="primary" matStepperPrevious>Anterior</button>
-            <button class="btn-next" mat-flat-button color="primary" (click)="onSubmit()" type="submit">Confirmar</button>
+            <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
+            <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" (click)="onSubmit()" type="submit">Confirmar</button>
         </div>
     </mat-step>
 </mat-stepper>
