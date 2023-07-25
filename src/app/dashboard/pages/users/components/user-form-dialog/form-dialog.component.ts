@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Users } from '../../models/user';
 
@@ -17,15 +17,6 @@ import { Users } from '../../models/user';
 })
 export class FormDialogComponent {
 
-  /*firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
-
-
-  constructor(private _formBuilder: FormBuilder) { }*/
   name = new FormControl('', [Validators.required, Validators.minLength(2)]);
   surname = new FormControl('', [Validators.required]);
   phone = new FormControl('', [Validators.required, Validators.maxLength(12)]);
@@ -62,7 +53,7 @@ export class FormDialogComponent {
     if (this.name.hasError('required') || this.surname.hasError('required') || this.phone.hasError('required') || this.email.hasError('required') || this.password.hasError('required') || this.userType.hasError('required')) {
       return 'Este campo es requerido';
     }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.email.hasError('email') ? 'No es un mail válido' : '';
   }
 
   constructor(

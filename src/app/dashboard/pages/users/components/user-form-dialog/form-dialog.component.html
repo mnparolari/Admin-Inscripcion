@@ -28,10 +28,10 @@
     </mat-step>
     <mat-step color="accent" [completed]="secondStepComplete">
         <form [formGroup]="userForm" class="form">
-            <ng-template matStepLabel>Creá el usuario</ng-template>
+            <ng-template matStepLabel>Usuario y contraseña</ng-template>
             <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="pat@example.com" [formControl]="email" required>
+                <input matInput placeholder="usuario@ejemplo.com" [formControl]="email" required>
                 <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                 <mat-icon matSuffix>
                     <span class="material-symbols-outlined">mail</span>
@@ -56,13 +56,13 @@
     </mat-step>
     <mat-step color="accent" [completed]="thirdStepComplete">
         <form [formGroup]="userForm" class="form">
-            <ng-template matStepLabel>Elegí el tipo de usuario</ng-template>
+            <ng-template matStepLabel>Tipo de usuario</ng-template>
             <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <mat-label>Opciones</mat-label>
                 <mat-select [formControl]="userType" name="userType" required>
                     <mat-option value={{type}} *ngFor="let type of types">{{type}}</mat-option>
                 </mat-select>
-                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-error *ngIf="userType.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
             <div class="btn-form" color="primary">
                 <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>

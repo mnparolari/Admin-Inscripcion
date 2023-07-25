@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { SpinnerService } from './core/services/spinner.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     BrowserAnimationsModule,
     DashboardModule,
   ],
-  providers: [],
+  providers: [SpinnerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

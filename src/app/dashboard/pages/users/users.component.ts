@@ -1,32 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from './components/user-form-dialog/form-dialog.component';
 import { Users } from './models/user';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { UserServiceService } from './services/users.service';
+import { NotifierService } from 'src/app/core/services/notifier.service';
+import { SpinnerService } from 'src/app/core/services/spinner.service';
 
-const USERS_DATA: Users[] = [
-  {
-    id: 1,
-    name: 'Martin',
-    surname: 'Parolari',
-    phone: '1134629639',
-    email: 'mnparolari@gmail.com',
-    password: '123456',
-    userType: 'Profesor'
-  }
-]
+let currentId = 2;
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit, OnDestroy {
 
-  public users: Users[] = USERS_DATA
+  public users: Observable<Users[]>;
+  showSpinner = true;
+  private subscription!: Subscription;
 
-  constructor(public dialog: MatDialog) { }
-  
+
+  constructor(public dialog: MatDialog, private userService: UserServiceService, private notifier: NotifierService, private spinner: SpinnerService) {
+    this.users = this.userService.getUsers().pipe(
+      map((users) =>
+        users.map((user) => ({
+          ...user,
+          name: user.name.toUpperCase(),
+          surname: user.surname.toUpperCase(),
+          email: user.email.toUpperCase(),
+          userType: user.userType.toUpperCase()
+        }))
+      )
+    );
+    this.userService.loadUsers();
+  }
+
+  ngOnInit(): void {
+    this.subscription = this.spinner.getSpinner().subscribe((show: boolean) => {
+      this.showSpinner = show;
+    });
+    this.spinner.hide();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   onCreateUser(): void {
     this.dialog
@@ -35,18 +56,16 @@ export class UsersComponent {
       .subscribe({
         next: (v) => {
           if (v) {
-            this.users = [
-              ...this.users,
-              {
-                id: this.users.length + 1,
-                name: v.name,
-                surname: v.surname,
-                phone: v.phone,
-                email: v.email,
-                password: v.password,
-                userType: v.userType
-              },
-            ];
+            this.userService.createdUser({
+              id: currentId++,
+              name: v.name,
+              surname: v.surname,
+              phone: v.phone,
+              email: v.email,
+              password: v.password,
+              userType: v.userType
+            });
+            this.notifier.showSucces('Usuario creado', 'El usuario se creó correctamente')
           }
         }
       });
@@ -62,10 +81,10 @@ export class UsersComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.users = this.users.filter((u) => u.id !== userToDelete.id);
-        Swal.fire('Eliminado', 'El registro ha sido eliminado', 'success');
+        this.userService.deleteUser(userToDelete.id)
+        this.notifier.showSucces('Eliminado', 'El registro ha sido eliminado correctamente');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelado', 'La acción ha sido cancelada', 'error');
+        this.notifier.showError('Cancelado', 'La acción ha sido cancelada');
       }
     });
   }
@@ -78,9 +97,10 @@ export class UsersComponent {
       .afterClosed()
       .subscribe({
         next: (userUpdated) => {
-          this.users = this.users.map((user) => {
-            return user.id === userToEdit.id ? { ...user, ...userUpdated } : user;
-          })
+          if (userUpdated) {
+            this.userService.updatedUser(userToEdit.id, userUpdated)
+            this.notifier.showSucces('Usuario modificado', 'El usuario se modificó correctamente')
+          }
         }
       })
   }

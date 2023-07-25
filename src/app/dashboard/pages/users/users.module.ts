@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from 'src/app/shared/shared.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatSelectModule,
     MatTableModule,
     SharedModule,
+    MatProgressSpinnerModule,
     NgIf
   ],
   exports: [
