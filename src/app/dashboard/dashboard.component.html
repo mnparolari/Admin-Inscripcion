@@ -1,22 +1,12 @@
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-drawer opened #drawer class="example-sidenav" mode="side">
         <img class="logo" src="https://jobs.coderhouse.com/assets/logos_coderhouse.png" alt="Logo">
-        <div class="button-menu">
-            <button style="margin-top: 20px;" mat-button *ngFor="let nav of navegation">{{nav}}</button>
-        </div>
+        <app-nav-menu></app-nav-menu>
     </mat-drawer>
-
     <div class="example-sidenav-content">
-        <mat-toolbar>
-            <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
-                aria-label="Example icon-button with menu icon">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span appFontSize>Plataforma eLearning de Coderhouse</span>
-        </mat-toolbar>
+        <app-toolbar [drawer]="drawer"></app-toolbar>
         <main>
-            <app-home></app-home>
-            <app-users></app-users>
+            <router-outlet></router-outlet>
         </main>
     </div>
 </mat-drawer-container>

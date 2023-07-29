@@ -1,0 +1,74 @@
+<mat-stepper orientation="vertical" linear #stepper>
+    <mat-step color="accent" [hasError]="!firstStepComplete" [completed]="firstStepComplete">
+        <form [formGroup]="courseForm">
+            <ng-template matStepLabel>Elegí el curso</ng-template>
+            <mat-error style="text-align: right;" *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-button-toggle-group name="toggleGroup"
+                style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; align-items: center; margin-top: 10px;">
+                <mat-button-toggle *ngFor="let item of iconCourses" style="margin-top: 20px; margin-bottom: 10px; margin-right: 15px; height: 100%; width: 100%; display: 
+                        flex; align-items: center;" (change)="onToggleChange(item)">
+                    <img style="width: 40px;" src={{item.icon}} alt={{item.name}}>
+                    <p>{{item.name}}</p>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <mat-error style="text-align: center;" *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+            <div class="btn-form" style="margin-top: 10px;">
+                <button mat-flat-button style="background-color: #e8ff3c; color: #000;"
+                    matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step color="accent" [hasError]="!secondStepComplete" [completed]="secondStepComplete">
+        <ng-template matStepLabel>Completá los datos del curso</ng-template>
+        <form [formGroup]="courseForm" style="margin: 15px;">
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
+                <mat-label>Nombre del docente</mat-label>
+                <input matInput [formControl]="teacher" name="teacher" required>
+                <mat-error *ngIf="teacher.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-icon matSuffix style="color: #fff;">badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
+                <mat-label>Fecha de curso</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate [formControl]="courseFrom" name="courseForm" placeholder="Desde">
+                    <input matEndDate [formControl]="courseTo" name="courseTo" placeholder="Hasta">
+                </mat-date-range-input>
+                <mat-hint>DD/MM/AAAA – DD/MM/AAAA</mat-hint>
+                <mat-error *ngIf="courseFrom.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <div class="btn-form">
+                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000"
+                    matStepperPrevious>Anterior</button>
+                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000"
+                    matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step color="accent" class="data-form">
+        <ng-template matStepLabel>Confirmación</ng-template>
+        <div style="text-align: center;">
+            <p style="font-weight: 500; text-align: center; font-size: 1rem; color: #fff; padding-top: 15px;">Estás por
+                crear un nuevo curso:</p>
+            <img style="width: 40px; text-align: center;" src={{courseForm.value.icon}} alt={{courseForm.value.name}}>
+        </div>
+        <div style="display: flex; justify-content: space-around; flex-direction: row; color: #fff;">
+            <p><span style="font-weight: 500; text-decoration: underline;">Nombre:</span> {{courseForm.value.name}}</p>
+            <p><span style="font-weight: 500; text-decoration: underline;">Categoría:</span>
+                {{courseForm.value.category}}</p>
+            <p><span style="font-weight: 500; text-decoration: underline;">Profesor:</span> {{courseForm.value.teacher}}
+            </p>
+        </div>
+        <div style="display: flex; justify-content: space-around; flex-direction: row; color: #fff;">
+            <p><span style="font-weight: 500; text-decoration: underline;">Fecha desde:</span>
+                {{courseForm.value.courseFrom | date:'dd/MM/yyyy'}}</p>
+            <p><span style="font-weight: 500; text-decoration: underline;">Fecha hasta:</span>
+                {{courseForm.value.courseTo | date:'dd/MM/yyyy'}}</p>
+        </div>
+        <div class="btn-form">
+            <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
+            <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" (click)="onSubmit()" type="submit">Confirmar</button>
+        </div>
+    </mat-step>
+</mat-stepper>

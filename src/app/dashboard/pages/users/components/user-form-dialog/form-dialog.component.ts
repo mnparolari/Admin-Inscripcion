@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
@@ -7,6 +7,7 @@ import { Users } from '../../models/user';
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./form-dialog.component.scss'],
   providers: [
     {
@@ -15,6 +16,7 @@ import { Users } from '../../models/user';
     },
   ]
 })
+
 export class FormDialogComponent {
 
   name = new FormControl('', [Validators.required, Validators.minLength(2)]);
@@ -33,7 +35,7 @@ export class FormDialogComponent {
     userType: this.userType,
   });
 
-  types: string[] = ["Profesor", "Estudiante"];
+  types: string[] = ["Administrador", "Usuario"];
 
   get firstStepComplete(): boolean {
     return this.name.valid && this.surname.valid && this.phone.valid

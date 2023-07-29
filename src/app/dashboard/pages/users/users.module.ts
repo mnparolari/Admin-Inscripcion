@@ -14,13 +14,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from 'src/app/shared/shared.module';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { UsersDetailComponent } from './pages/users-detail/users-detail.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
     UsersComponent,
     FormDialogComponent,
     UserTableComponent,
+    UsersDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +40,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatTableModule,
     SharedModule,
     MatProgressSpinnerModule,
+    RouterModule,
     NgIf
   ],
   exports: [
