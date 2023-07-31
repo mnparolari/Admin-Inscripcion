@@ -4,19 +4,17 @@
     </button>
 </div>
 <div style="display: flex; justify-content: center; align-items: center;">
-    <mat-card class="center-card" *ngIf="user" style="width: 500px;">
+    <mat-card class="center-card" *ngIf="student" style="width: 500px;">
         <mat-card-header>
             <mat-card-title-group>
                 <div style="display: flex; flex-direction: column; justify-content: space-around;">
                     <div>
-                        <mat-card-title>{{user.name}}
-                            {{user.surname}}</mat-card-title>
-                        <mat-card-subtitle
-                            style="margin-bottom: 20px; color: #fff;">{{user.userType}}</mat-card-subtitle>
-                        <mat-card-subtitle style="margin-bottom: 10px;">Teléfono: {{user.phone}}</mat-card-subtitle>
-                        <mat-card-subtitle style="margin-bottom: 10px;">Email: {{user.email}}</mat-card-subtitle>
+                        <mat-card-title style="margin-bottom: 20px;">{{student.name}}
+                            {{student.surname}}</mat-card-title>
+                        <mat-card-subtitle style="margin-bottom: 10px;">Teléfono: {{student.phone}}</mat-card-subtitle>
+                        <mat-card-subtitle style="margin-bottom: 10px;">Email: {{student.email}}</mat-card-subtitle>
                         <mat-card-subtitle style="margin-bottom: 10px;">Contraseña:
-                            {{user.password}}</mat-card-subtitle>
+                            {{student.password}}</mat-card-subtitle>
                     </div>
                     <div>
                         <label for="fileInput" class="custom-file-upload">

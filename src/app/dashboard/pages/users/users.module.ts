@@ -17,6 +17,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UsersDetailComponent } from './pages/users-detail/users-detail.component';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     MatProgressSpinnerModule,
     RouterModule,
+    MatCardModule,
     NgIf
   ],
   exports: [

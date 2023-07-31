@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+
 @NgModule({
   declarations: [
     HomeComponent
@@ -13,7 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CommonModule,
     MatCardModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   exports: [
     HomeComponent

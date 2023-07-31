@@ -19,6 +19,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.component';
+import { RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -26,6 +29,7 @@ import { MatCardModule } from '@angular/material/card';
     CoursesComponent,
     CoursesTableComponent,
     CoursesDialogComponent,
+    CoursesDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +50,8 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     MatDialogModule,
     SharedModule,
+    RouterModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CoursesComponent,

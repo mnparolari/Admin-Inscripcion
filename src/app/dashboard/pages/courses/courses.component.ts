@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Courses } from './models/courses';
 import { CoursesService } from './services/courses.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,26 +7,36 @@ import { CoursesDialogComponent } from './components/courses-dialog/courses-dial
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { SpinnerService } from 'src/app/core/services/spinner.service';
 
-let currentId = 1006;
+let currentCommission = 1006;
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
-export class CoursesComponent implements OnInit  {
-  
+export class CoursesComponent implements OnInit, OnDestroy {
 
   public courses$: Observable<Courses[]>;
+  showSpinner = true;
+  private subscription!: Subscription;
 
-  constructor(public dialog: MatDialog, private coursesService: CoursesService, private notifier: NotifierService, private datePipe: DatePipe) {
+  constructor(public dialog: MatDialog, private coursesService: CoursesService, private notifier: NotifierService, private datePipe: DatePipe, private spinner: SpinnerService) {
     this.courses$ = this.coursesService.getCourses();
   }
-  
+
   ngOnInit(): void {
+    this.subscription = this.spinner.getSpinner().subscribe((show: boolean) => {
+      this.showSpinner = show;
+    });
     this.coursesService.loadCourses();
+    this.spinner.hide();
   };
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   onCreateCourse(): void {
     this.dialog
@@ -41,7 +51,7 @@ export class CoursesComponent implements OnInit  {
               icon: c.icon,
               name: c.name,
               category: c.category,
-              commission: currentId++,
+              commission: currentCommission++,
               teacher: c.teacher,
               courseFrom: formattedCourseFrom,
               courseTo: formattedCourseTo
@@ -51,12 +61,12 @@ export class CoursesComponent implements OnInit  {
         }
       });
   }
-  
+
   formatDate(dateStr: string | null | undefined): string {
     if (!dateStr) {
-      return ''; 
+      return '';
     }
-  
+
     const dateObj = new Date(dateStr);
     const formattedDate = this.datePipe.transform(dateObj, 'dd/MM/yyyy');
     return formattedDate || '';
@@ -79,7 +89,7 @@ export class CoursesComponent implements OnInit  {
       }
     });
   }
-  
+
   onEditCourse(courseToEdit: Courses): void {
     this.dialog
       .open(CoursesDialogComponent, {
@@ -89,10 +99,17 @@ export class CoursesComponent implements OnInit  {
       .subscribe({
         next: (courseUpdated) => {
           if (courseUpdated) {
-            this.coursesService.updatedCourses(courseToEdit.commission, courseUpdated)
+            const formattedCourseFrom = courseUpdated.courseFrom.toLocaleDateString('es-AR');
+            const formattedCourseTo = courseUpdated.courseTo.toLocaleDateString('es-AR');
+            const updatedCourseData: Courses = {
+              ...courseUpdated,
+              courseFrom: formattedCourseFrom,
+              courseTo: formattedCourseTo
+            };
+            this.coursesService.updatedCourses(courseToEdit.commission, updatedCourseData);
             this.notifier.showSucces('Curso modificado', 'El curso se modificó correctamente')
           }
         }
-      })
-  }
+      });
+  };
 }

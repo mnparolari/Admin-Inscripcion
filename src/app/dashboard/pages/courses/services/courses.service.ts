@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, take } from 'rxjs';
+import { BehaviorSubject, Observable, take, map } from 'rxjs';
 import { Courses } from '../models/courses';
 
 @Injectable({
@@ -42,8 +42,8 @@ export class CoursesService {
         category: 'Data',
         commission: 1005,
         teacher: 'Nicolás Scarinci',
-        courseFrom: '30/01/2024',
-        courseTo: '02/10/2024'
+        courseFrom: '22/05/2024',
+        courseTo: '2/10/2024'
       }
     ]);
   };
@@ -60,7 +60,7 @@ export class CoursesService {
     this.courses$.pipe(take(1)).subscribe({
       next: (data) => {
         this._courses$.next(
-          data.map((course) => course.commission === commission ? {...course, ...dataUpdated} : course) 
+          data.map((course) => course.commission === commission ? { ...course, ...dataUpdated } : course)
         )
       }
     })
@@ -73,5 +73,9 @@ export class CoursesService {
       }
     });
   };
-  
+
+  getCourseByCommission(commission: number): Observable<Courses | undefined> {
+    return this.courses$.pipe(take(1), map((course) => course.find((c) => c.commission === commission)),)
+  }
+
 }

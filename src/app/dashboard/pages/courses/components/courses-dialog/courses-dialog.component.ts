@@ -175,7 +175,9 @@ export class CoursesDialogComponent {
   const dateObj = new Date(dateStr);
   const formattedDate = this.datePipe.transform(dateObj, 'dd/MM/yyyy');
   return formattedDate || '';
-}
+};
+
+
 
   onSubmit(): void {
     if (this.courseForm.invalid) {

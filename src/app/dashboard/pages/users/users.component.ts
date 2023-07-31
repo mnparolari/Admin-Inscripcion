@@ -18,30 +18,32 @@ let currentId = 2;
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  public users: Observable<Users[]>;
+  public users$: Observable<Users[]>;
   showSpinner = true;
   private subscription!: Subscription;
 
 
   constructor(public dialog: MatDialog, private userService: UserServiceService, private notifier: NotifierService, private spinner: SpinnerService) {
-    this.users = this.userService.getUsers().pipe(
-      map((users) =>
-        users.map((user) => ({
-          ...user,
-          name: user.name.toUpperCase(),
-          surname: user.surname.toUpperCase(),
-          email: user.email.toUpperCase(),
-          userType: user.userType.toUpperCase()
-        }))
-      )
-    );
-    this.userService.loadUsers();
+    this.users$ = this.userService.getUsers()
+    // .pipe(
+    //   map((users) =>
+    //     users.map((user) => ({
+    //       ...user,
+    //       name: user.name.toUpperCase(),
+    //       surname: user.surname.toUpperCase(),
+    //       email: user.email.toUpperCase(),
+    //       userType: user.userType.toUpperCase()
+    //     }))
+    //   )
+    // );
+
   }
 
   ngOnInit(): void {
     this.subscription = this.spinner.getSpinner().subscribe((show: boolean) => {
       this.showSpinner = show;
     });
+    this.userService.loadUsers();
     this.spinner.hide();
   }
 
@@ -54,16 +56,16 @@ export class UsersComponent implements OnInit, OnDestroy {
       .open(FormDialogComponent)
       .afterClosed()
       .subscribe({
-        next: (v) => {
-          if (v) {
+        next: (u) => {
+          if (u) {
             this.userService.createdUser({
               id: currentId++,
-              name: v.name,
-              surname: v.surname,
-              phone: v.phone,
-              email: v.email,
-              password: v.password,
-              userType: v.userType
+              name: u.name,
+              surname: u.surname,
+              phone: u.phone,
+              email: u.email,
+              password: u.password,
+              userType: u.userType
             });
             this.notifier.showSucces('Usuario creado', 'El usuario se creó correctamente')
           }

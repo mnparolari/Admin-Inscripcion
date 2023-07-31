@@ -10,7 +10,7 @@ const DATA_USERS: Observable<Users[]> = of([
     phone: '1134629639',
     email: 'mnparolari@gmail.com',
     password: '123456',
-    userType: 'Profesor'
+    userType: 'Administrador'
   }
 ]);
 

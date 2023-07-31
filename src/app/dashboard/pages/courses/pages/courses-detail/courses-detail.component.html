@@ -1,0 +1,22 @@
+<div>
+    <button routerLink=".." mat-icon-button color="accent">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
+<div style="display: flex; justify-content: center; align-items: center;">
+    <mat-card class="center-card" *ngIf="course" style="width: 500px;">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>{{course.name}}</mat-card-title>
+                <mat-card-subtitle style="margin-bottom: 20px; color:#fff">{{course.category}}</mat-card-subtitle>
+                <mat-card-subtitle style="margin-bottom: 10px;">Comisión: {{course.commission}}</mat-card-subtitle>
+                <mat-card-subtitle style="margin-bottom: 10px;">Profesor: {{course.teacher}}</mat-card-subtitle>
+                <mat-card-subtitle style="margin-bottom: 10px;">Fecha desde: {{course.courseFrom}}</mat-card-subtitle>
+                <mat-card-subtitle style="margin-bottom: 10px;">Fecha hasta: {{course.courseTo}}</mat-card-subtitle>
+                <img mat-card-xl-image
+                    src={{course.icon}}
+                    alt="Default" style="width: 200px; padding-bottom: 25px;">
+            </mat-card-title-group>
+        </mat-card-header>
+    </mat-card>
+</div>

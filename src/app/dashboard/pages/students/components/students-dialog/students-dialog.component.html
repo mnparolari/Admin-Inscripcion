@@ -1,0 +1,76 @@
+<mat-stepper class="mat-stepper" linear #stepper>
+    <mat-step color="accent" [hasError]="!firstStepComplete" [completed]="firstStepComplete">
+        <form [formGroup]="studentForm" class="form">
+            <ng-template matStepLabel>Datos personales</ng-template>
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input  matInput [formControl]="name" name="name" required>
+                <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
+                <mat-label>Apellido</mat-label>
+                <input matInput [formControl]="surname" name="surname" required>
+                <mat-error *ngIf="surname.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
+                <span matPrefix> &nbsp;&nbsp;+54 &nbsp;</span>
+                <input type="tel" matInput placeholder="11 5412 8888" [formControl]="phone" name="phone" required>
+                <mat-error *ngIf="phone.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-hint>Sin 0 y sin 15</mat-hint>
+            </mat-form-field>
+            <div class="btn-form">
+                <button mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step color="accent" [completed]="secondStepComplete">
+        <form [formGroup]="studentForm" class="form">
+            <ng-template matStepLabel>Usuario y contraseña</ng-template>
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="usuario@ejemplo.com" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>
+                    <span class="material-symbols-outlined">mail</span>
+                </mat-icon>
+                <mat-hint>Tu email será tu usuario</mat-hint>
+            </mat-form-field>
+            <mat-form-field color="accent" class="mat-form" appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" name="password" required>
+                <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint>Entre 8 y 15 carácteres.</mat-hint>
+            </mat-form-field>
+            <div class="btn-form" >
+                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
+                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step color="accent" class="data-form">
+        <ng-template matStepLabel>Confirmación</ng-template>
+        <p style="font-weight: 500; text-align: center; font-size: 1rem;">Los datos declarados son:</p>
+        <div class="data-form">
+            <div style="display: flex; justify-content: space-around; flex-direction: column;">
+                <p><span style= "font-weight: 700; text-decoration: underline;">Nombre:</span> {{studentForm.value.name}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Apellido:</span> {{studentForm.value.surname}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Teléfono:</span> {{studentForm.value.phone}}</p>
+            </div>
+            <div style="display: flex; justify-content: space-around; flex-direction: column;">
+                <p><span style= "font-weight: 700; text-decoration: underline;">Usuario:</span> {{studentForm.value.email}}</p>
+                <p><span style= "font-weight: 700; text-decoration: underline;">Contraseña:</span> {{studentForm.value.password}}</p>
+            </div>
+        </div>
+        <div class="btn-form">
+            <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
+            <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" (click)="onSubmit()" type="submit">Confirmar</button>
+        </div>
+    </mat-step>
+</mat-stepper>

@@ -8,6 +8,9 @@ import { CoursesComponent } from './dashboard/pages/courses/courses.component';
 import { UsersDetailComponent } from './dashboard/pages/users/pages/users-detail/users-detail.component';
 import { LoginComponent } from './auth/pages/login/login.component';
 import { RegisterComponent } from './auth/pages/register/register.component';
+import { CoursesDetailComponent } from './dashboard/pages/courses/pages/courses-detail/courses-detail.component';
+import { StudentsComponent } from './dashboard/pages/students/students.component';
+import { StudentsDetailComponent } from './dashboard/pages/students/pages/students-detail/students-detail.component';
 
 const routes: Routes = [
   {
@@ -33,7 +36,29 @@ const routes: Routes = [
       },
       {
         path: 'courses',
-        component: CoursesComponent
+        children: [
+          {
+            path: '',
+            component: CoursesComponent
+          },
+          {
+            path: ':commission',
+            component: CoursesDetailComponent
+          }
+        ]
+      },
+      {
+        path: 'students',
+        children: [
+          {
+            path: '',
+            component: StudentsComponent
+          },
+          {
+            path: ':id',
+            component: StudentsDetailComponent
+          }
+        ]
       },
       {
         path: '**',

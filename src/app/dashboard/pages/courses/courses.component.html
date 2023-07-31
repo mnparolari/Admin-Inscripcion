@@ -1,8 +1,8 @@
 <div style="text-align: center; padding-right: 20px; padding-left: 20px;">
-    <!-- <div *ngIf="showSpinner" class="spinner-container">
+    <div *ngIf="showSpinner" class="spinner-container">
         <mat-spinner color="accent" diameter="50"></mat-spinner>
-    </div> -->
-    <ng-container >
+    </div>
+    <ng-container *ngIf="!showSpinner">
         <p style="text-decoration: underline; margin-top: 20px;" appFontSize>Cursos</p>
         <div>
             <app-courses-table [dataSource]="(courses$ | async) || []" (deleteCourse)="onDeleteCourse($event)"
