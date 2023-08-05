@@ -10,20 +10,20 @@ import { Courses } from '../../models/courses';
 })
 export class CoursesDetailComponent {
   public course?: Courses | null = null;
-  public courseCommission?: number;
+  public courseId?: number;
 
   constructor(private activatedRoute: ActivatedRoute, private coursesService: CoursesService, private router: Router) {
-    if (!Number(this.activatedRoute.snapshot.paramMap.get('commission'))) {
+    if (!Number(this.activatedRoute.snapshot.paramMap.get('id'))) {
       this.router.navigate(['dashboard', 'courses']);
     } else {
-      this.courseCommission = Number(this.activatedRoute.snapshot.paramMap.get('commission'));
+      this.courseId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
       this.userDetail();
     }
   };
 
   userDetail(): void {
-    if (this.courseCommission) {
-      this.coursesService.getCourseByCommission(this.courseCommission).subscribe({
+    if (this.courseId) {
+      this.coursesService.getCourseById(this.courseId).subscribe({
         next: (course) => (this.course = course),
       })
     }

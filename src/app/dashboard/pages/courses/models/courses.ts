@@ -1,8 +1,8 @@
 export interface Courses {
+    id: number,
     icon: string,
     name: string,
     category: string,
-    commission: number,
     teacher: string,
     courseFrom: string,
     courseTo: string

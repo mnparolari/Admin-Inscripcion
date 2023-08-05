@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { StudentsRoutingModule } from './students-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,19 +28,20 @@ import { MatCardModule } from '@angular/material/card';
   ],
   imports: [
     CommonModule,
+    StudentsRoutingModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
     MatSelectModule,
     MatTableModule,
-    SharedModule,
     MatProgressSpinnerModule,
-    RouterModule,
     MatStepperModule,
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
     MatDialogModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatCardModule
   ]
 })

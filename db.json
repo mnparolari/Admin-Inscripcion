@@ -1,0 +1,79 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Martin",
+      "surname": "Parolari",
+      "phone": "1134629639",
+      "email": "mnparolari@gmail.com",
+      "password": "123456789",
+      "userType": "Administrador"
+    },
+    {
+      "id": 2,
+      "name": "Nicolas",
+      "surname": "Scarinci",
+      "phone": "01155446688",
+      "email": "nico@gmail.com",
+      "password": "123456789",
+      "userType": "Usuario"
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "name": "Emilia",
+      "surname": "López",
+      "phone": "1155223366",
+      "email": "emilia@gmail.com",
+      "password": "EmiliaEmilia123"
+    }
+  ],
+  "courses": [
+    {
+      "icon": "./assets/angular.png",
+      "name": "Angular",
+      "category": "Programación y Desarrollo",
+      "teacher": "Martín Parolari",
+      "courseFrom": "4/8/2023",
+      "courseTo": "31/8/2023",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "icon": "./assets/photoshop.png",
+      "name": "Photoshop",
+      "category": "Diseño UX/UI",
+      "teacher": "Xoana Casanova",
+      "courseFrom": "10/01/2023",
+      "courseTo": "12/02/2023"
+    },
+    {
+      "id": 3,
+      "icon": "./assets/rstudio.png",
+      "name": "Rstudio",
+      "category": "Data",
+      "teacher": "Nicolás Scarinci",
+      "courseFrom": "22/05/2024",
+      "courseTo": "2/10/2024"
+    },
+    {
+      "icon": "./assets/java.png",
+      "name": "Java",
+      "category": "Programación y Desarrollo",
+      "teacher": "Juan Perez",
+      "courseFrom": "01/06/2023",
+      "courseTo": "30/11/2023",
+      "id": 4
+    },
+    {
+      "icon": "./assets/python.png",
+      "name": "Phyton",
+      "category": "Programación y Desarrollo",
+      "teacher": "Gabriel Cacarulo",
+      "courseFrom": "01/12/2023",
+      "courseTo": "18/05/2024",
+      "id": 5
+    }
+  ]
+}

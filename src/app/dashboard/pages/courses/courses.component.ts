@@ -9,7 +9,6 @@ import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 
-let currentCommission = 1006;
 
 @Component({
   selector: 'app-courses',
@@ -48,10 +47,10 @@ export class CoursesComponent implements OnInit, OnDestroy {
             const formattedCourseFrom = this.formatDate(c.courseFrom);
             const formattedCourseTo = this.formatDate(c.courseTo);
             this.coursesService.createCourses({
+              id: c.id,
               icon: c.icon,
               name: c.name,
               category: c.category,
-              commission: currentCommission++,
               teacher: c.teacher,
               courseFrom: formattedCourseFrom,
               courseTo: formattedCourseTo
@@ -82,7 +81,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.coursesService.deleteCourses(courseToDelete.commission)
+        this.coursesService.deleteCourses(courseToDelete.id)
         this.notifier.showSucces('Eliminado', 'El registro ha sido eliminado correctamente');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.notifier.showError('Cancelado', 'La acción ha sido cancelada');
@@ -106,7 +105,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
               courseFrom: formattedCourseFrom,
               courseTo: formattedCourseTo
             };
-            this.coursesService.updatedCourses(courseToEdit.commission, updatedCourseData);
+            this.coursesService.updatedCourses(courseToEdit.id, updatedCourseData);
             this.notifier.showSucces('Curso modificado', 'El curso se modificó correctamente')
           }
         }

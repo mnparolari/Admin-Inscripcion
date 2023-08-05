@@ -1,7 +1,11 @@
-<mat-toolbar>
-    <button (click)="drawer?.toggle()" mat-icon-button class="example-icon"
-        aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span appFontSize>Plataforma eLearning de Coderhouse</span>
+<mat-toolbar style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex; align-items: center;">
+        <button (click)="drawer?.toggle()" mat-icon-button class="example-icon"
+            aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span appFontSize>Plataforma eLearning de Coderhouse</span>
+    </div>
+    <span appFontSize>Bienvenido/a {{ (authUser$ | async)?.name }} {{ (authUser$ |
+        async)?.surname }}</span>
 </mat-toolbar>

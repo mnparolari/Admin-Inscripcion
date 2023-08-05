@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UsersDetailComponent } from './pages/users-detail/users-detail.component';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { UsersRoutingModule } from './users-routing.module';
 
 
 @NgModule({
@@ -29,19 +30,20 @@ import { MatCardModule } from '@angular/material/card';
   ],
   imports: [
     CommonModule,
+    UsersRoutingModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatButtonModule,
     MatStepperModule,
     MatDialogModule,
     MatSelectModule,
     MatTableModule,
-    SharedModule,
     MatProgressSpinnerModule,
-    RouterModule,
     MatCardModule,
     NgIf
   ],

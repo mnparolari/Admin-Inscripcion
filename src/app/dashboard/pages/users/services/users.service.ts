@@ -1,18 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Users } from '../models/user';
-import { BehaviorSubject, Observable, of, take, map } from 'rxjs';
-
-const DATA_USERS: Observable<Users[]> = of([
-  {
-    id: 1,
-    name: 'Martin',
-    surname: 'Parolari',
-    phone: '1134629639',
-    email: 'mnparolari@gmail.com',
-    password: '123456',
-    userType: 'Administrador'
-  }
-]);
+import { BehaviorSubject, Observable, of, take, map, mergeMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,49 +12,60 @@ export class UserServiceService {
   private _users$ = new BehaviorSubject<Users[]>([]);
   private users$ = this._users$.asObservable();
 
-  constructor() { }
+  constructor(private httpClient: HttpClient, private notifier: NotifierService) { }
 
   loadUsers(): void {
-    DATA_USERS.subscribe({
-      next: (usersDB) => this._users$.next(usersDB)
-    })
+    this.httpClient.get<Users[]>('http://localhost:3000/users').subscribe({
+      next: (users) => {
+        this._users$.next(users);
+      },
+      error: () => {
+        this.notifier.showError('Error', 'No se pueden recuperar los estudiantes')
+      }
+    });
   }
 
   getUsers(): Observable<Users[]> {
     return this.users$;
   }
 
-  createdUser(user:Users): void {
-    this.users$.pipe(take(1)).subscribe({
-      next: (data) => {
-        this._users$.next([...data, user])
-      }
-    })
+  createdUser(user: Users): void {
+    this.httpClient.post<Users>('http://localhost:3000/users', user)
+      .pipe(
+        mergeMap((userCreated) => this.users$.pipe(
+          take(1),
+          map((data) => [...data, userCreated])
+        ))
+      )
+      .subscribe({
+        next: (userData) => {
+          this._users$.next(userData);
+        }
+      })
   };
 
   updatedUser(id: number, dataUpdated: Users): void {
-    this.users$.pipe(take(1)).subscribe({
-      next: (data) => {
-        this._users$.next(
-          data.map((user) => user.id === id ? {...user, ...dataUpdated} : user) 
-        )
-      }
+    this.httpClient.put('http://localhost:3000/users/' + id, dataUpdated).subscribe({
+      next: () => this.loadUsers()
     })
   };
 
   deleteUser(id: number): void {
-    this._users$.pipe(take(1)).subscribe({
-      next: (data) => {
-        this._users$.next(
-          data.filter((user) => user.id !== id ) 
+    this.httpClient.delete('http://localhost:3000/users/' + id)
+      .pipe(
+        mergeMap(
+          (userDeleted) => this.users$.pipe(
+            take(1), map((data) => data.filter((user) => user.id !== id))
+          )
         )
-      }
-    })
+      ).subscribe({
+        next: (dataUser) => this._users$.next(dataUser)
+      });
   };
 
-  getUserById(id: number): Observable<Users | undefined>{
+  getUserById(id: number): Observable<Users | undefined> {
     return this.users$.pipe(
       take(1),
-        map((users) => users.find((user) => user.id === id)),)
+      map((users) => users.find((user) => user.id === id)),)
   }
 }

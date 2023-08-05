@@ -22,6 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.component';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 
 @NgModule({
@@ -33,10 +34,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   ],
   imports: [
     CommonModule,
-    MatIconModule,
-    MatTableModule,
+    SharedModule,
+    RouterModule,
+    CoursesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
+    MatTableModule,
     MatButtonModule,
     MatDatepickerModule,
     MatInputModule,
@@ -49,8 +53,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatCheckboxModule,
     MatCardModule,
     MatDialogModule,
-    SharedModule,
-    RouterModule,
     MatProgressSpinnerModule
   ],
   exports: [
