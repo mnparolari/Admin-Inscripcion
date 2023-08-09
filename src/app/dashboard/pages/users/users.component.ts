@@ -3,13 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from './components/user-form-dialog/form-dialog.component';
 import { Users } from './models/user';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { UserServiceService } from './services/users.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 
-let currentId = 2;
 
 @Component({
   selector: 'app-users',
@@ -24,20 +22,8 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 
   constructor(public dialog: MatDialog, private userService: UserServiceService, private notifier: NotifierService, private spinner: SpinnerService) {
-    this.users$ = this.userService.getUsers()
-    // .pipe(
-    //   map((users) =>
-    //     users.map((user) => ({
-    //       ...user,
-    //       name: user.name.toUpperCase(),
-    //       surname: user.surname.toUpperCase(),
-    //       email: user.email.toUpperCase(),
-    //       userType: user.userType.toUpperCase()
-    //     }))
-    //   )
-    // );
-
-  }
+    this.users$ = this.userService.getUsers();
+  };
 
   ngOnInit(): void {
     this.subscription = this.spinner.getSpinner().subscribe((show: boolean) => {
@@ -59,13 +45,14 @@ export class UsersComponent implements OnInit, OnDestroy {
         next: (u) => {
           if (u) {
             this.userService.createdUser({
-              id: currentId++,
+              id: u.id,
               name: u.name,
               surname: u.surname,
               phone: u.phone,
               email: u.email,
               password: u.password,
-              userType: u.userType
+              userType: u.userType,
+              token: u.token
             });
             this.notifier.showSucces('Usuario creado', 'El usuario se creó correctamente')
           }

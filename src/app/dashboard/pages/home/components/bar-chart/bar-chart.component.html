@@ -1,0 +1,10 @@
+<div style="text-align:center; width: 550px;">
+    <h4>Cantidad de alumnos inscriptos por categoría:</h4>
+    <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
+        [type]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    </canvas>
+
+    <!-- <button mat-button mat-raised-button color="primary">
+        Update
+    </button> -->
+</div>

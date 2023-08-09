@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, take, map, mergeMap } from 'rxjs';
 import { Courses } from '../models/courses';
 import { HttpClient } from '@angular/common/http';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class CoursesService {
 
 
   loadCourses(): void {
-    this.httpClient.get<Courses[]>('http://localhost:3000/courses').subscribe({
+    this.httpClient.get<Courses[]>(environment.baseApiUrl + '/courses').subscribe({
       next: (courses) => {
         this._courses$.next(courses);
       },
@@ -31,7 +32,7 @@ export class CoursesService {
   }
 
   createCourses(course: Courses): void {
-    this.httpClient.post<Courses>('http://localhost:3000/courses', course)
+    this.httpClient.post<Courses>(environment.baseApiUrl + '/courses', course)
       .pipe(
         mergeMap((courseCreated) => this.courses$.pipe(
           take(1),
@@ -46,13 +47,13 @@ export class CoursesService {
   };
 
   updatedCourses(id: number, dataUpdated: Courses): void {
-    this.httpClient.put('http://localhost:3000/courses/' + id, dataUpdated).subscribe({
+    this.httpClient.put(environment.baseApiUrl + '/courses/' + id, dataUpdated).subscribe({
       next: () => this.loadCourses()
     })
   };
 
   deleteCourses(id: number): void {
-    this.httpClient.delete('http://localhost:3000/courses/' + id)
+    this.httpClient.delete(environment.baseApiUrl + '/courses/' + id)
       .pipe(
         mergeMap(
           () => this.courses$.pipe(

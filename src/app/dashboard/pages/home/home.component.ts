@@ -1,6 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +21,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.showSpinner = show;
     });
     this.spinner.hide();
-  }
+  };
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
+  };
 }

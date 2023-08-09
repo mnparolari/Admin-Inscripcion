@@ -7,7 +7,8 @@
       "phone": "1134629639",
       "email": "mnparolari@gmail.com",
       "password": "123456789",
-      "userType": "Administrador"
+      "userType": "Administrador",
+      "token": "psjwjeufnFSHFRjJkL8523"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "phone": "01155446688",
       "email": "nico@gmail.com",
       "password": "123456789",
-      "userType": "Usuario"
+      "userType": "Usuario",
+      "token": "JSFRPDKEerj556898742jF"
     }
   ],
   "students": [
@@ -49,31 +51,13 @@
       "courseTo": "12/02/2023"
     },
     {
-      "id": 3,
-      "icon": "./assets/rstudio.png",
-      "name": "Rstudio",
+      "icon": "./assets/excel.png",
+      "name": "Excel",
       "category": "Data",
       "teacher": "Nicolás Scarinci",
-      "courseFrom": "22/05/2024",
-      "courseTo": "2/10/2024"
-    },
-    {
-      "icon": "./assets/java.png",
-      "name": "Java",
-      "category": "Programación y Desarrollo",
-      "teacher": "Juan Perez",
-      "courseFrom": "01/06/2023",
-      "courseTo": "30/11/2023",
-      "id": 4
-    },
-    {
-      "icon": "./assets/python.png",
-      "name": "Phyton",
-      "category": "Programación y Desarrollo",
-      "teacher": "Gabriel Cacarulo",
-      "courseFrom": "01/12/2023",
-      "courseTo": "18/05/2024",
-      "id": 5
+      "courseFrom": "1/8/2023",
+      "courseTo": "31/8/2023",
+      "id": 3
     }
   ]
 }

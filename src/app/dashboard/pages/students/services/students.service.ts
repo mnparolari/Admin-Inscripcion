@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, take, map, mergeMap } from 'rxjs';
 import { Students } from '../models/students';
 import { HttpClient } from '@angular/common/http';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class StudentsService {
   constructor(private httpClient: HttpClient, private notifier: NotifierService) { }
 
   loadStudents(): void {
-    this.httpClient.get<Students[]>('http://localhost:3000/students').subscribe({
+    this.httpClient.get<Students[]>(environment.baseApiUrl + '/students').subscribe({
       next: (students) => {
         this._students$.next(students);
       },
@@ -31,7 +32,7 @@ export class StudentsService {
   };
 
   createStudents(students: Students): void {
-    this.httpClient.post<Students>('http://localhost:3000/students', students)
+    this.httpClient.post<Students>(environment.baseApiUrl + '/students', students)
     .pipe(
       mergeMap((studentCreated) => this.students$.pipe(
         take(1),
@@ -46,13 +47,13 @@ export class StudentsService {
   };
 
   updatedStudents(id: number, dataUpdated: Students): void {
-    this.httpClient.put('http://localhost:3000/students/' + id, dataUpdated).subscribe({
+    this.httpClient.put(environment.baseApiUrl + '/students/' + id, dataUpdated).subscribe({
       next: () => this.loadStudents()
     })
   };
 
   deleteStudents(id: number): void {
-    this.httpClient.delete('http://localhost:3000/students/' + id)
+    this.httpClient.delete(environment.baseApiUrl + '/students/' + id)
       .pipe(
         mergeMap(
           (studentDelete) => this.students$.pipe(

@@ -8,7 +8,6 @@ import { StudentsDialogComponent } from './components/students-dialog/students-d
 import Swal from 'sweetalert2';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 
-let currentId = 2;
 
 @Component({
   selector: 'app-students',
@@ -45,7 +44,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
       next: (s) => {
         if (s) {
           this.studentsService.createStudents({
-            id: currentId++,
+            id: s.id,
             name: s.name,
             surname: s.surname,
             phone: s.phone,

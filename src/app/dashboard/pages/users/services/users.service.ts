@@ -3,6 +3,8 @@ import { Users } from '../models/user';
 import { BehaviorSubject, Observable, of, take, map, mergeMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { generateToken } from 'src/app/shared/util/helpers'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class UserServiceService {
   constructor(private httpClient: HttpClient, private notifier: NotifierService) { }
 
   loadUsers(): void {
-    this.httpClient.get<Users[]>('http://localhost:3000/users').subscribe({
+    this.httpClient.get<Users[]>(environment.baseApiUrl + '/users').subscribe({
       next: (users) => {
         this._users$.next(users);
       },
@@ -27,10 +29,12 @@ export class UserServiceService {
 
   getUsers(): Observable<Users[]> {
     return this.users$;
-  }
+  };
+
 
   createdUser(user: Users): void {
-    this.httpClient.post<Users>('http://localhost:3000/users', user)
+    const token = generateToken(22)
+    this.httpClient.post<Users>(environment.baseApiUrl + '/users', {... user, token})
       .pipe(
         mergeMap((userCreated) => this.users$.pipe(
           take(1),
@@ -45,13 +49,13 @@ export class UserServiceService {
   };
 
   updatedUser(id: number, dataUpdated: Users): void {
-    this.httpClient.put('http://localhost:3000/users/' + id, dataUpdated).subscribe({
+    this.httpClient.put(environment.baseApiUrl + '/users/' + id, dataUpdated).subscribe({
       next: () => this.loadUsers()
     })
   };
 
   deleteUser(id: number): void {
-    this.httpClient.delete('http://localhost:3000/users/' + id)
+    this.httpClient.delete(environment.baseApiUrl + '/users/' + id)
       .pipe(
         mergeMap(
           (userDeleted) => this.users$.pipe(
