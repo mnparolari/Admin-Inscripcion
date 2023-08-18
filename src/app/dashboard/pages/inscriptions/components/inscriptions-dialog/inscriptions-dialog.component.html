@@ -1,0 +1,47 @@
+<mat-stepper class="mat-stepper" linear #stepper>
+    <mat-step color="accent" [hasError]="!firstStepComplete" [completed]="firstStepComplete">
+        <form [formGroup]="inscriptionForm">
+            <ng-template matStepLabel>Elegí el curso</ng-template>
+            <mat-error style="text-align: right;" *ngIf="courseId.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-button-toggle-group name="toggleGroup"
+                style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; align-items: center; margin-top: 10px;">
+                <mat-button-toggle [value]="course.id" *ngFor="let course of coursesOptions$ | async" style="margin-top: 10px; margin-bottom: 10px; margin-right: 15px; height: 100%; width: 100%; display: 
+                        flex; align-items: center;" (change)="onToggleChangeCourse(course)">
+                    <img style="width: 50px;" src={{course.icon}} alt={{course.name}}>
+                    <br>
+                    <small>Curso: {{course.name}} <br>
+                        Comisión: {{course.id}} <br>
+                        Profesor: {{course.teacher}}
+                    </small>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <div class="btn-form" style="margin-top: 10px;">
+                <button mat-flat-button style="background-color: #e8ff3c; color: #000;"
+                    matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step color="accent" [hasError]="!secondStepComplete" [completed]="secondStepComplete">
+        <form [formGroup]="inscriptionForm">
+            <ng-template matStepLabel>Elegí el/la alumno/a</ng-template>
+            <mat-error style="text-align: right;" *ngIf="studentId.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-button-toggle-group name="toggleGroup"
+                style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; align-items: center; margin-top: 10px;">
+                <mat-button-toggle *ngFor="let student of studentsOptions$ | async" style="margin-top: 20px; margin-bottom: 10px; margin-right: 15px; height: 100%; width: 100%; display: 
+                        flex; align-items: center;" (change)="onToggleChangeStudent(student)">
+                    <img style="width: 70px;" src={{student.img}} alt={{student.id}}>
+                    <br>
+                    <small>Nombre: {{student.name}} <br>
+                        Apellido: {{student.surname}}<br>
+                        Usuario: {{student.email}}
+                    </small>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <div class="btn-form" style="margin-top: 10px;">
+                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
+                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000"
+                    (click)="onSubmit()" type="submit">Confirmar</button>
+            </div>
+        </form>
+    </mat-step>
+</mat-stepper>

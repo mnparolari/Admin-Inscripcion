@@ -1,10 +1,11 @@
-export interface Users {
+export interface User {
     id: number;
     name: string;
     surname: string;
     phone: string;
     email: string;
     password: string;
-    userType: string;
+    userType: 'Administrador' | 'Usuario';
+    img: string,
     token: string;
 }

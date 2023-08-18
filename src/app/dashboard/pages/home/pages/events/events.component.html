@@ -1,0 +1,32 @@
+<div *ngIf="showSpinner" class="spinner-container">
+    <mat-spinner color="accent" diameter="50"></mat-spinner>
+</div>
+
+<ng-container *ngIf="!showSpinner">
+    <div style="display: flex; justify-content: left; align-items: start;">
+        <button routerLink=".." mat-icon-button color="accent">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: center;align-items: center;">
+        <p style="text-decoration: underline; margin-top: 20px;" appFontSize>Eventos</p>
+        <mat-accordion class="example-headers-align" multi style="width: 500px; margin: 10px;"
+            *ngFor="let e of typeEvents">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{e.date}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{e.title}}
+                    </mat-panel-description>
+                    <mat-icon style="margin-right: 9px; margin-top: 5px;">date_range</mat-icon>
+                </mat-expansion-panel-header>
+                <div style="display: flex; justify-content: center;">
+                    <a href={{e.link}} target="_blank"><img mat-card-image style="width: 490px;" src={{e.img}}
+                            alt={{e.title}}></a>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</ng-container>

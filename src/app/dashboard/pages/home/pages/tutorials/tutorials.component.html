@@ -1,0 +1,48 @@
+<div *ngIf="showSpinner" class="spinner-container">
+    <mat-spinner color="accent" diameter="50"></mat-spinner>
+</div>
+
+<ng-container *ngIf="!showSpinner">
+    <div style="display: flex; justify-content: left; align-items: start;">
+        <button routerLink=".." mat-icon-button color="accent">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <p style="text-decoration: underline; margin-top: 20px; text-align: center;" appFontSize>Tutoriales</p>
+        <div style="display: flex;">
+            <mat-card class="example-card" style="width: 480px; margin: 30px; ">
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                    <iframe width="460" height="315" src="https://www.youtube.com/embed/FHziCeWaL6U"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+                <h3 style="margin-left: 15px;">1. Plataforma</h3>
+            </mat-card>
+            <mat-card class="example-card" style="width: 480px; margin: 30px;">
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                    <iframe width="460" height="315" src="https://www.youtube.com/embed/MBFw5wTTf_Y"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+                <h3 style="margin-left: 15px;">2. Metodología</h3>
+            </mat-card>
+        </div>
+        <div>
+            <mat-card class="example-card" style="width: 470px; margin: 30px;">
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                    <iframe width="460" height="315" src="https://www.youtube.com/embed/aL1fxQlp_7I"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+                <h3 style="margin-left: 15px;">3. Otras cosas a tener en cuenta</h3>
+            </mat-card>
+        </div>
+    </div>
+</ng-container>

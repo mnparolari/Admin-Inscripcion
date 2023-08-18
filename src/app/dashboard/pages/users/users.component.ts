@@ -1,22 +1,23 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormDialogComponent } from './components/user-form-dialog/form-dialog.component';
-import { Users } from './models/user';
+import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { User } from './models/user';
 import { Observable, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { UserServiceService } from './services/users.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 
+const urlImg = 'https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg'
 
 @Component({
-  selector: 'app-users',
+  selector: 'app-user',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  public users$: Observable<Users[]>;
+  public users$: Observable<User[]>;
   showSpinner = true;
   private subscription!: Subscription;
 
@@ -29,6 +30,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.subscription = this.spinner.getSpinner().subscribe((show: boolean) => {
       this.showSpinner = show;
     });
+    this.spinner.show();
     this.userService.loadUsers();
     this.spinner.hide();
   }
@@ -39,7 +41,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   onCreateUser(): void {
     this.dialog
-      .open(FormDialogComponent)
+      .open(UserDialogComponent)
       .afterClosed()
       .subscribe({
         next: (u) => {
@@ -52,6 +54,7 @@ export class UsersComponent implements OnInit, OnDestroy {
               email: u.email,
               password: u.password,
               userType: u.userType,
+              img: urlImg,
               token: u.token
             });
             this.notifier.showSucces('Usuario creado', 'El usuario se creó correctamente')
@@ -60,7 +63,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       });
   }
 
-  onDeleteUser(userToDelete: Users): void {
+  onDeleteUser(userToDelete: User): void {
     Swal.fire({
       title: `¿Estás seguro que queres eliminar el usuario de tipo <span style = "color: #F44336">${userToDelete.userType}</span>, registrado a nombre de <span style = "color: #F44336">${userToDelete.name} ${userToDelete.surname}</span>, con el correo electrónico <span style = "color: #F44336">${userToDelete.email}</span>?`,
       text: 'Esta acción no se puede deshacer',
@@ -78,15 +81,16 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
   }
 
-  onEditUser(userToEdit: Users): void {
+  onEditUser(userToEdit: User): void {
     this.dialog
-      .open(FormDialogComponent, {
+      .open(UserDialogComponent, {
         data: userToEdit
       })
       .afterClosed()
       .subscribe({
         next: (userUpdated) => {
           if (userUpdated) {
+            userUpdated.img = userToEdit.img;
             this.userService.updatedUser(userToEdit.id, userUpdated)
             this.notifier.showSucces('Usuario modificado', 'El usuario se modificó correctamente')
           }

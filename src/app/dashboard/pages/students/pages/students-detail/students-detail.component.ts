@@ -1,47 +1,97 @@
-import { Component } from '@angular/core';
-import { Students } from '../../models/students';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Student } from '../../models/student';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentsService } from '../../services/students.service';
+import { Subscription, tap } from 'rxjs';
+import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Component({
   selector: 'app-students-detail',
   templateUrl: './students-detail.component.html',
   styleUrls: ['./students-detail.component.scss']
 })
-export class StudentsDetailComponent {
-  public student?: Students | null = null;
+export class StudentsDetailComponent implements OnInit, OnDestroy {
+  public student?: Student | null = null;
   public studentId?: number;
-  public selectedImage: File | null = null;
+  public selectedImage: string = '';
+  showSpinner = true;
+  private subscription!: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private studentService: StudentsService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private studentService: StudentsService, private router: Router, private spinner: SpinnerService, private notifier: NotifierService) {
     if (!Number(this.activatedRoute.snapshot.paramMap.get('id'))) {
       this.router.navigate(['dashboard', 'students']);
     } else {
       this.studentId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-      this.userDetail();
+      this.studentDetail();
     }
   };
 
-  userDetail(): void {
+  ngOnInit(): void {
+    this.subscription = this.spinner.getSpinner().subscribe((show: boolean) => {
+      this.showSpinner = show;
+    });
+    this.spinner.show();
+    this.studentDetail();
+    this.spinner.hide();
+  };
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  };
+
+  studentDetail(): void {
     if (this.studentId) {
       this.studentService.getStudentById(this.studentId).subscribe({
-        next: (student) => (this.student = student),
+        next: (student) => {
+          this.student = student;
+          if (student) {
+            this.selectedImage = student.img;
+          }
+        }
       })
     }
   };
 
-
-onFileSelected(event: Event): void {
-  const input = event.target as HTMLInputElement;
-  if (input?.files && input.files.length > 0) {
-    this.selectedImage = input.files[0];
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files && input.files.length > 0) {
+      const file = input.files[0];
+  
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (this.student) {
+          this.student.img = e.target?.result as string;
+          this.selectedImage = this.student.img;
+          this.saveStudentImage();
+        }
+      };
+      reader.readAsDataURL(file);
+    }
   }
-};
+
+  saveStudentImage(): void {
+    if (this.studentId !== undefined) {
+      this.studentService.updateStudentImage(this.studentId, this.selectedImage)
+      .pipe(
+        tap(
+          () => {
+            this.notifier.showSucces('Imagen cargada correctamente', 'Esta será la foto de perfil.');
+          },
+          () => {
+            this.notifier.showError('Error', 'No se pudo cargar la imagen solicitada. Volvé a intentar.');
+          }
+        )
+      )
+      .subscribe();
+  }
+}
+
 
   getImageUrl(): string {
     if (this.selectedImage) {
-      return URL.createObjectURL(this.selectedImage);
+      return this.selectedImage;
     }
     return '';
-  };
+  }
 }

@@ -1,0 +1,18 @@
+<h4 style="text-align: center;">Cantidad de alumnos inscriptos por curso:</h4>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="text-align:center; width: 270px;">
+        <canvas baseChart class="chart" [data]="pieChartDataProg" [type]="pieChartTypeProg"
+            [options]="pieChartOptionsProg" [plugins]="pieChartPluginsProg">
+        </canvas>
+    </div>
+    <div style="text-align:center; width: 250px;">
+        <canvas baseChart class="chart" [data]="pieChartDataDesing" [type]="pieChartTypeDesing"
+            [options]="pieChartOptionsDesing" [plugins]="pieChartPluginsDesing">
+        </canvas>
+    </div>
+    <div style="text-align:center; width: 250px;">
+        <canvas baseChart class="chart" [data]="pieChartDataDataProd" [type]="pieChartTypeDataProd"
+            [options]="pieChartOptionsDataProd" [plugins]="pieChartPluginsDataProd">
+        </canvas>
+    </div>
+</div>

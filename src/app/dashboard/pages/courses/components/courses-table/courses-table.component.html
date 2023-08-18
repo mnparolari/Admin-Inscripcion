@@ -43,10 +43,10 @@
             <button [routerLink]="courses.id" mat-icon-button color="accent" style="margin-right: 1px;">
                 <mat-icon>visibility</mat-icon>
             </button>
-            <button (click)="deleteCourse.emit(courses)" mat-icon-button color="warn" style="margin-left: 1px; margin-right: 1px;">
+            <button [hidden]="!(admin$ | async)" (click)="deleteCourse.emit(courses)" mat-icon-button color="warn" style="margin-left: 1px; margin-right: 1px;">
                 <mat-icon>delete</mat-icon>
             </button>
-            <button (click)="editCourse.emit(courses)" mat-icon-button color="accent" style="margin-right: 1px;">
+            <button [hidden]="!(admin$ | async)" (click)="editCourse.emit(courses)" mat-icon-button color="accent" style="margin-right: 1px;">
                 <mat-icon>edit</mat-icon>
             </button>
         </td>

@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { StudentsService } from "./services/students.service";
 import { TestBed } from "@angular/core/testing";
-import { Students } from "./models/students";
+import { Student } from "./models/student";
 import { environment } from "src/environments/environment";
 
 describe('StudentsService', () => {
@@ -18,13 +18,14 @@ describe('StudentsService', () => {
     });
 
     it('should fetch students', () => {
-        const mockStudentsLoad: Students[] = [
+        const mockStudentsLoad: Student[] = [
             {
                 id: 1,
                 name: "Emilia",
                 surname: "López",
                 phone: "1155223366",
                 email: "emilia@gmail.com",
+                img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg",
                 password: "EmiliaEmilia123"
             },
         ]
@@ -42,12 +43,13 @@ describe('StudentsService', () => {
     });
 
     it('should create a new student', () => {
-        const mockStudentsCreated: Students = {
+        const mockStudentsCreated: Student = {
             id: 2,
             name: "Agustin",
             surname: "Gutierrez",
             phone: "1111222233",
             email: "agustin@gmail.com",
+            img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg",
             password: "Agustin123"
         }
 
@@ -66,12 +68,13 @@ describe('StudentsService', () => {
 
     it('should update an existing student', () => {
         const studentIdToUpdate = 1;
-        const mockUpdatedStudent: Students = {
+        const mockUpdatedStudent: Student = {
             id: 3,
             name: "Joaquina",
             surname: "Pickin",
             phone: "1166987456",
             email: "joaquina@gmail.com",
+            img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg",
             password: "Joaquina123"
         }
 
@@ -112,13 +115,14 @@ describe('StudentsService', () => {
     });
 
     it('should get a student by ID', () => {
-        const mockStudents: Students[] = [
+        const mockStudents: Student[] = [
             {
                 id: 4,
                 name: "Matias",
                 surname: "Juarez",
                 phone: "1198899889",
                 email: "matias@gmail.com",
+                img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg",
                 password: "Matias123"
             },
         ];

@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { Users } from '../../pages/users/models/user';
+import { User } from '../../pages/users/models/user';
+import { Store } from '@ngrx/store';
+import { selectAuthUser } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,11 +15,9 @@ export class ToolbarComponent {
   @Input()
   public drawer?: MatDrawer;
 
-  public authUser$: Observable<Users | null> 
+  public authUser$: Observable<User | null> 
 
-  constructor(private authService: AuthService) {
-    this.authUser$ = this.authService._authUser$
-  }
-  
-
+  constructor(private store: Store) {
+    this.authUser$ = this.store.select(selectAuthUser);
+  };
 }

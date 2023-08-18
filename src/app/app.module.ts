@@ -8,8 +8,9 @@ import { registerLocaleData, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import eslocale from '@angular/common/locales/es-AR';
 import { StoreModule } from '@ngrx/store';
-import { appReduce } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducer } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 registerLocaleData(eslocale);
 
@@ -22,8 +23,9 @@ registerLocaleData(eslocale);
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot(appReduce, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreModule.forRoot(appReducer),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
   ],
   providers: [SpinnerService,
     {

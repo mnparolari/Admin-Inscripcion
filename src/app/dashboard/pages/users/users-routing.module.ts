@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UsersComponent } from './users.component';
-import { UsersDetailComponent } from './pages/users-detail/users-detail.component';
+import { UserDetailComponent } from './pages/users-detail/user-detail.component';
 
 
 
@@ -14,11 +14,11 @@ import { UsersDetailComponent } from './pages/users-detail/users-detail.componen
       {
         path: '',
         component: UsersComponent
-    },
-    {
+      },
+      {
         path: ':id',
-        component: UsersDetailComponent
-    }
+        component: UserDetailComponent
+      }
     ])
   ], exports: [RouterModule]
 })

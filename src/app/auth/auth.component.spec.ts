@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Users } from 'src/app/dashboard/pages/users/models/user';
+import { User } from 'src/app/dashboard/pages/users/models/user';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 import { LoginPayload } from './models/auth';
+import { StoreModule } from '@ngrx/store';
 
 describe('AuthService', () => {
     let service: AuthService;
@@ -14,7 +15,7 @@ describe('AuthService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule, RouterTestingModule],
+            imports: [HttpClientTestingModule, RouterTestingModule, StoreModule.forRoot({})],
             providers: [AuthService]
         });
 
@@ -33,7 +34,7 @@ describe('AuthService', () => {
             password: '123456789'
         };
 
-        const mockResponse: Users[] = [
+        const mockResponse: User[] = [
             {
                 id: 1,
                 name: "Martin",
@@ -42,7 +43,8 @@ describe('AuthService', () => {
                 email: "mnparolari@gmail.com",
                 password: "123456789",
                 userType: "Administrador",
-                token: "psjwjeufnFSHFRjJkL8523"
+                token: "psjwjeufnFSHFRjJkL8523",
+                img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg"
             }
         ];
 

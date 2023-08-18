@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 import { UserServiceService } from './services/users.service';
-import { Users } from './models/user';
+import { User } from './models/user';
 
 describe('UserServiceService', () => {
     let service: UserServiceService;
@@ -18,7 +18,7 @@ describe('UserServiceService', () => {
     });
 
     it('should fetch users', () => {
-        const mockUserLoad: Users[] = [
+        const mockUserLoad: User[] = [
             {
                 id: 1,
                 name: "Martin",
@@ -27,7 +27,8 @@ describe('UserServiceService', () => {
                 email: "mnparolari@gmail.com",
                 password: "123456789",
                 userType: "Administrador",
-                token: "psjwjeufnFSHFRjJkL8523"
+                token: "psjwjeufnFSHFRjJkL8523",
+                img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg"
             },
         ]
         service.loadUsers();
@@ -44,7 +45,7 @@ describe('UserServiceService', () => {
     });
 
     it('should create a new user', () => {
-        const mockUserCreated: Users = {
+        const mockUserCreated: User = {
             id: 2,
             name: "Nicolas",
             surname: "Scarinci",
@@ -52,7 +53,8 @@ describe('UserServiceService', () => {
             email: "nico@gmail.com",
             password: "123456789",
             userType: "Usuario",
-            token: "JSFRPDKEerj556898742jF"
+            token: "JSFRPDKEerj556898742jF",
+            img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg"
         }
 
         service.createdUser(mockUserCreated);
@@ -70,7 +72,7 @@ describe('UserServiceService', () => {
 
     it('should update an existing user', () => {
         const userIdToUpdate = 1;
-        const mockUpdatedUser: Users = {
+        const mockUpdatedUser: User = {
             id: 3,
             name: "Juan",
             surname: "Perez",
@@ -78,7 +80,8 @@ describe('UserServiceService', () => {
             email: "juan@gmail.com",
             password: "987654321",
             userType: "Administrador",
-            token: "JSFdsdasdsad1561568rty"
+            token: "JSFdsdasdsad1561568rty",
+            img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg"
         }
 
         service.updatedUser(userIdToUpdate, mockUpdatedUser);
@@ -118,7 +121,7 @@ describe('UserServiceService', () => {
     });
 
     it('should get a user by ID', () => {
-        const mockUsers: Users[] = [
+        const mockUsers: User[] = [
             {
                 id: 4,
                 name: "Laura",
@@ -127,7 +130,8 @@ describe('UserServiceService', () => {
                 email: "laura@gmail.com",
                 password: "159753159",
                 userType: "Usuario",
-                token: "p5651dsdsds15hghg872jj"
+                token: "p5651dsdsds15hghg872jj",
+                img: "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg"
             },
         ];
 

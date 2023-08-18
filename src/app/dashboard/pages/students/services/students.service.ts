@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, take, map, mergeMap } from 'rxjs';
-import { Students } from '../models/students';
+import { Student } from '../models/student';
 import { HttpClient } from '@angular/common/http';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { environment } from 'src/environments/environment';
@@ -11,13 +11,13 @@ import { environment } from 'src/environments/environment';
 })
 export class StudentsService {
 
-  private _students$ = new BehaviorSubject<Students[]>([]);
+  private _students$ = new BehaviorSubject<Student[]>([]);
   private students$ = this._students$.asObservable();
 
   constructor(private httpClient: HttpClient, private notifier: NotifierService) { }
 
   loadStudents(): void {
-    this.httpClient.get<Students[]>(environment.baseApiUrl + '/students').subscribe({
+    this.httpClient.get<Student[]>(environment.baseApiUrl + '/students').subscribe({
       next: (students) => {
         this._students$.next(students);
       },
@@ -27,26 +27,26 @@ export class StudentsService {
     })
   };
 
-  getStudents(): Observable<Students[]> {
+  getStudents(): Observable<Student[]> {
     return this._students$.asObservable();
   };
 
-  createStudents(students: Students): void {
-    this.httpClient.post<Students>(environment.baseApiUrl + '/students', students)
-    .pipe(
-      mergeMap((studentCreated) => this.students$.pipe(
-        take(1),
-        map((data) => [...data, studentCreated])
-      ))
-    )
-    .subscribe({
-      next: (studentData) => {
-        this._students$.next(studentData)
-      }
-    });
+  createStudents(students: Student): void {
+    this.httpClient.post<Student>(environment.baseApiUrl + '/students', students)
+      .pipe(
+        mergeMap((studentCreated) => this.students$.pipe(
+          take(1),
+          map((data) => [...data, studentCreated])
+        ))
+      )
+      .subscribe({
+        next: (studentData) => {
+          this._students$.next(studentData)
+        }
+      });
   };
 
-  updatedStudents(id: number, dataUpdated: Students): void {
+  updatedStudents(id: number, dataUpdated: Student): void {
     this.httpClient.put(environment.baseApiUrl + '/students/' + id, dataUpdated).subscribe({
       next: () => this.loadStudents()
     })
@@ -56,7 +56,7 @@ export class StudentsService {
     this.httpClient.delete(environment.baseApiUrl + '/students/' + id)
       .pipe(
         mergeMap(
-          (studentDelete) => this.students$.pipe(
+          () => this.students$.pipe(
             take(1), map((data) => data.filter((student) => student.id !== id))
           ))
       ).subscribe({
@@ -64,8 +64,13 @@ export class StudentsService {
       })
   };
 
-  getStudentById(id: number): Observable<Students | undefined> {
+  getStudentById(id: number): Observable<Student | undefined> {
     return this.students$.pipe(take(1), map((student) => student.find((s) => s.id === id)),)
+  };
+
+  updateStudentImage(id: number, newImage: string): Observable<any> {
+    const updatedStudent = { img: newImage };
+    return this.httpClient.patch(environment.baseApiUrl + '/students/' + id, updatedStudent);
   }
 }
 

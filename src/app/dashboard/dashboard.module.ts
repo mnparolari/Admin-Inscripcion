@@ -24,7 +24,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    HomeModule,
     SharedModule,
     RouterModule,
     MatSidenavModule,

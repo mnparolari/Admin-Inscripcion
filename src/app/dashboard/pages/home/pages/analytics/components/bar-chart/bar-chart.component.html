@@ -1,0 +1,10 @@
+<div style="width: 700px; align-items: center; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 20px; margin-bottom: 20px;">
+    <h4>Cantidad de alumnos inscriptos por año según categoría:</h4>
+    <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
+        [type]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    </canvas>
+
+    <button mat-button mat-raised-button color="primary" (click)="randomize()">
+        Crecimiento Lineal
+    </button>
+</div>

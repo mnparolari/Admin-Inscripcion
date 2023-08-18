@@ -2,7 +2,7 @@ import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Students } from '../../models/students';
+import { Student } from '../../models/student';
 
 @Component({
   selector: 'app-students-dialog',
@@ -50,7 +50,7 @@ export class StudentsDialogComponent {
 
   constructor(
     private dialogRef: MatDialogRef<StudentsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data?: Students
+    @Inject(MAT_DIALOG_DATA) private data?: Student
   ) {
     if (this.data) {
       this.name.setValue(this.data.name);
@@ -67,5 +67,4 @@ export class StudentsDialogComponent {
       this.dialogRef.close(this.studentForm.value);
     }
   };
-
 }

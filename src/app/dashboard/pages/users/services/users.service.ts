@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Users } from '../models/user';
-import { BehaviorSubject, Observable, of, take, map, mergeMap } from 'rxjs';
+import { User } from '../models/user';
+import { BehaviorSubject, Observable, take, map, mergeMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { generateToken } from 'src/app/shared/util/helpers'
@@ -11,13 +11,13 @@ import { environment } from 'src/environments/environment';
 })
 export class UserServiceService {
 
-  private _users$ = new BehaviorSubject<Users[]>([]);
+  private _users$ = new BehaviorSubject<User[]>([]);
   private users$ = this._users$.asObservable();
 
   constructor(private httpClient: HttpClient, private notifier: NotifierService) { }
 
   loadUsers(): void {
-    this.httpClient.get<Users[]>(environment.baseApiUrl + '/users').subscribe({
+    this.httpClient.get<User[]>(environment.baseApiUrl + '/users').subscribe({
       next: (users) => {
         this._users$.next(users);
       },
@@ -27,14 +27,14 @@ export class UserServiceService {
     });
   }
 
-  getUsers(): Observable<Users[]> {
+  getUsers(): Observable<User[]> {
     return this.users$;
   };
 
 
-  createdUser(user: Users): void {
+  createdUser(user: User): void {
     const token = generateToken(22)
-    this.httpClient.post<Users>(environment.baseApiUrl + '/users', {... user, token})
+    this.httpClient.post<User>(environment.baseApiUrl + '/users', {... user, token})
       .pipe(
         mergeMap((userCreated) => this.users$.pipe(
           take(1),
@@ -48,7 +48,7 @@ export class UserServiceService {
       })
   };
 
-  updatedUser(id: number, dataUpdated: Users): void {
+  updatedUser(id: number, dataUpdated: User): void {
     this.httpClient.put(environment.baseApiUrl + '/users/' + id, dataUpdated).subscribe({
       next: () => this.loadUsers()
     })
@@ -67,9 +67,14 @@ export class UserServiceService {
       });
   };
 
-  getUserById(id: number): Observable<Users | undefined> {
+  getUserById(id: number): Observable<User | undefined> {
     return this.users$.pipe(
       take(1),
       map((users) => users.find((user) => user.id === id)),)
+  };
+
+  updateUserImage(id: number, newImage: string): Observable<any> {
+    const updatedUser = { img: newImage };
+    return this.httpClient.patch(environment.baseApiUrl + '/users/' + id, updatedUser);
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { CoursesService } from "./services/courses.service";
 import { TestBed } from "@angular/core/testing";
-import { Courses } from "./models/courses";
+import { Course } from "./models/course";
 import { environment } from "src/environments/environment";
 
 
@@ -19,7 +19,7 @@ describe('CoursesService', () => {
     });
 
     it('should fetch courses', () => {
-        const mockCoursesLoad: Courses[] = [
+        const mockCoursesLoad: Course[] = [
             {
                 id: 1,
                 icon: "./assets/angular.png",
@@ -44,7 +44,7 @@ describe('CoursesService', () => {
     });
 
     it('should create a new course', () => {
-        const mockCoursesCreated: Courses = {
+        const mockCoursesCreated: Course = {
             id: 2,
             icon: "./assets/reactjs.png",
             name: "React JS",
@@ -69,7 +69,7 @@ describe('CoursesService', () => {
 
     it('should update an existing course', () => {
         const coursesIdToUpdate = 1;
-        const mockUpdatedCourse: Courses = {
+        const mockUpdatedCourse: Course = {
             id: 3,
             icon: "./assets/javascript.png",
             name: "Javascript",
@@ -116,7 +116,7 @@ describe('CoursesService', () => {
     });
 
     it('should get a course by ID', () => {
-        const mockCourse: Courses[] = [
+        const mockCourse: Course[] = [
             {
                 id: 4,
                 icon: "./assets/java.png",

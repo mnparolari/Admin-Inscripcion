@@ -32,10 +32,10 @@
             <button [routerLink]="student.id" mat-icon-button color="accent" style="margin-right: 1px;">
                 <mat-icon>visibility</mat-icon>
             </button>
-            <button (click)="deleteStudent.emit(student)" mat-icon-button color="warn" style="margin-left: 1px; margin-right: 1px;">
+            <button [hidden]="!(admin$ | async)" (click)="deleteStudent.emit(student)" mat-icon-button color="warn" style="margin-left: 1px; margin-right: 1px;">
                 <mat-icon>delete</mat-icon>
             </button>
-            <button (click)="editStudent.emit(student)" mat-icon-button color="accent" style="margin-right: 1px;">
+            <button [hidden]="!(admin$ | async)" (click)="editStudent.emit(student)" mat-icon-button color="accent" style="margin-right: 1px;">
                 <mat-icon>edit</mat-icon>
             </button>
         </td>

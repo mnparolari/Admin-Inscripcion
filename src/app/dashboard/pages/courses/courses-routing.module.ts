@@ -5,7 +5,6 @@ import { CoursesComponent } from './courses.component';
 import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.component';
 
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -17,7 +16,7 @@ import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.co
     },
     {
         path: ':id',
-        component: CoursesDetailComponent
+        component: CoursesDetailComponent,
     }
     ])
   ],

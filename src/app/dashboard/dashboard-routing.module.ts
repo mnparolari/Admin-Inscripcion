@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { adminGuard } from '../core/guards/admin.guard';
 
 
 @NgModule({
@@ -8,10 +8,11 @@ import { HomeComponent } from './pages/home/home.component';
         RouterModule.forChild([
             {
                 path: 'home',
-                component: HomeComponent
+                loadChildren: () => import('./pages/home/home.module').then((typescriptModule) => typescriptModule.HomeModule)
             },
             {
                 path: 'users',
+                canActivate: [adminGuard],
                 loadChildren: () => import('./pages/users/users.module').then((typescriptModule) => typescriptModule.UsersModule)
             },
             {
@@ -21,6 +22,10 @@ import { HomeComponent } from './pages/home/home.component';
             {
                 path: 'students',
                 loadChildren: () => import('./pages/students/students.module').then((typescriptModule) => typescriptModule.StudentsModule)
+            },
+            {
+                path: 'inscriptions',
+                loadChildren: () => import('./pages/inscriptions/inscriptions.module').then((typescriptModule) => typescriptModule.InscriptionsModule)
             },
             {
                 path: '**',

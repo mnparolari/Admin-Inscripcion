@@ -1,0 +1,29 @@
+<div *ngIf="showSpinner" class="spinner-container">
+    <mat-spinner color="accent" diameter="50"></mat-spinner>
+</div>
+
+<ng-container *ngIf="!showSpinner">
+    <div style="display: flex; justify-content: left; align-items: start;">
+        <button routerLink=".." mat-icon-button color="accent">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: center;align-items: center;">
+        <p style="text-decoration: underline; margin-top: 20px;" appFontSize>Beneficios</p>
+        <mat-card style="width: 90%; margin-left: 20px; margin-top: 20px; margin-bottom: 20px;" *ngFor="let b of cardBenefits">
+            <mat-card-header style="display: flex; justify-content: center; align-items: center;">
+                <mat-card-title-group>
+                    <mat-card-title>{{b.name}}</mat-card-title>
+                    <mat-card-subtitle>{{b.description}}</mat-card-subtitle>
+                    <img mat-card-sm-image src={{b.img}}>
+                </mat-card-title-group>
+                <a mat-raised-button style="width: 100px; height: 100px; background-color: #e8ff3c; color: #000; opacity: 0.9; margin-left: 25px;" href={{b.link}} target="_blank">Conseguir</a>
+            </mat-card-header>
+            <mat-card-content>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</ng-container>
+
+
+

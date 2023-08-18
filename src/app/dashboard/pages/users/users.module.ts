@@ -9,13 +9,13 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { FormDialogComponent } from './components/user-form-dialog/form-dialog.component';
+import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
-import { UserTableComponent } from './components/user-table/user-table.component';
+import { UserTableComponent } from './components/user-table/users-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { UsersDetailComponent } from './pages/users-detail/users-detail.component';
+import { UserDetailComponent } from './pages/users-detail/user-detail.component';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { UsersRoutingModule } from './users-routing.module';
@@ -24,9 +24,9 @@ import { UsersRoutingModule } from './users-routing.module';
 @NgModule({
   declarations: [
     UsersComponent,
-    FormDialogComponent,
+    UserDialogComponent,
     UserTableComponent,
-    UsersDetailComponent,
+    UserDetailComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, take, map, mergeMap } from 'rxjs';
-import { Courses } from '../models/courses';
+import { Course } from '../models/course';
 import { HttpClient } from '@angular/common/http';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { environment } from 'src/environments/environment';
@@ -10,14 +10,14 @@ import { environment } from 'src/environments/environment';
 })
 export class CoursesService {
 
-  private _courses$ = new BehaviorSubject<Courses[]>([]);
-  private courses$ = this._courses$.asObservable();
+  private _courses$ = new BehaviorSubject<Course[]>([]);
+  public courses$ = this._courses$.asObservable();
 
   constructor(private httpClient: HttpClient, private notifier: NotifierService) { }
 
 
   loadCourses(): void {
-    this.httpClient.get<Courses[]>(environment.baseApiUrl + '/courses').subscribe({
+    this.httpClient.get<Course[]>(environment.baseApiUrl + '/courses').subscribe({
       next: (courses) => {
         this._courses$.next(courses);
       },
@@ -27,12 +27,12 @@ export class CoursesService {
     })
   };
 
-  getCourses(): Observable<Courses[]> {
+  getCourses(): Observable<Course[]> {
     return this._courses$.asObservable();
   }
 
-  createCourses(course: Courses): void {
-    this.httpClient.post<Courses>(environment.baseApiUrl + '/courses', course)
+  createCourses(course: Course): void {
+    this.httpClient.post<Course>(environment.baseApiUrl + '/courses', course)
       .pipe(
         mergeMap((courseCreated) => this.courses$.pipe(
           take(1),
@@ -46,7 +46,7 @@ export class CoursesService {
       })
   };
 
-  updatedCourses(id: number, dataUpdated: Courses): void {
+  updatedCourses(id: number, dataUpdated: Course): void {
     this.httpClient.put(environment.baseApiUrl + '/courses/' + id, dataUpdated).subscribe({
       next: () => this.loadCourses()
     })
@@ -64,7 +64,7 @@ export class CoursesService {
       })
   };
 
-  getCourseById(id: number): Observable<Courses | undefined> {
+  getCourseById(id: number): Observable<Course | undefined> {
     return this.courses$.pipe(take(1), map((course) => course.find((c) => c.id === id)),)
   }
 }

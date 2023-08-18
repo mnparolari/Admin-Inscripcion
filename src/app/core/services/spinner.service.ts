@@ -16,7 +16,7 @@ export class SpinnerService {
   }
 
   hide(): void {
-    timer(2000).pipe(take(1)).subscribe(() => {
+    timer(1000).pipe(take(1)).subscribe(() => {
       this.showSpinner$.next(false);
     });
   }

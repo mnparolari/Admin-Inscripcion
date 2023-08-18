@@ -1,0 +1,43 @@
+<div *ngIf="showSpinner" class="spinner-container">
+    <mat-spinner color="accent" diameter="50"></mat-spinner>
+</div>
+<ng-container *ngIf="!showSpinner">
+    <div>
+        <button routerLink=".." mat-icon-button color="accent">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <mat-card class="example-card" *ngIf="selectedInscription$ | async as inscriptionsData"
+            style="width: 480px; margin: 30px; ">
+            <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 10px;">
+                <img src={{inscriptionsData.course.icon}} alt="Selected" style="width: 200px;">
+                <div style="margin-left: 20px;">
+                    <mat-card-title style="margin-bottom: 20px;">Curso</mat-card-title>
+                    <mat-card-subtitle style="margin-bottom: 10px;">Nombre:
+                        {{inscriptionsData.course.name}}</mat-card-subtitle>
+                    <mat-card-subtitle style="margin-bottom: 10px;">Categoría
+                        {{inscriptionsData.course.category}}</mat-card-subtitle>
+                    <mat-card-subtitle style="margin-bottom: 10px;">Profesor:
+                        {{inscriptionsData.course.teacher}}</mat-card-subtitle>
+                    <mat-card-subtitle style="margin-bottom: 10px;">Inicio cursada:
+                        {{inscriptionsData.course.courseFrom}}</mat-card-subtitle>
+                    <mat-card-subtitle style="margin-bottom: 10px;">Fin cursada:
+                        {{inscriptionsData.course.courseTo}}</mat-card-subtitle>
+                </div>
+            </div>
+            <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+            <mat-card-title style="margin-bottom: 20px; text-align: center;">Estudiante</mat-card-title>
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px; text-align: center;">
+                <mat-card-subtitle style="margin-bottom: 10px;">Nombre:
+                    {{inscriptionsData.student.name}}</mat-card-subtitle>
+                <mat-card-subtitle style="margin-bottom: 10px;">Apellido:
+                    {{inscriptionsData.student.surname}}</mat-card-subtitle>
+                <mat-card-subtitle style="margin-bottom: 10px;">Email:
+                    {{inscriptionsData.student.email}}</mat-card-subtitle>
+                <mat-card-subtitle style="margin-bottom: 10px;">Teléfono:
+                    {{inscriptionsData.student.phone}}</mat-card-subtitle>
+            </div>
+        </mat-card>
+    </div>
+</ng-container>

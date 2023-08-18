@@ -1,37 +1,38 @@
-<div>
-    <button routerLink=".." mat-icon-button color="accent">
-        <mat-icon>arrow_back</mat-icon>
-    </button>
+<div *ngIf="showSpinner" class="spinner-container">
+    <mat-spinner color="accent" diameter="50"></mat-spinner>
 </div>
-<div style="display: flex; justify-content: center; align-items: center;">
-    <mat-card class="center-card" *ngIf="student" style="width: 500px;">
-        <mat-card-header>
-            <mat-card-title-group>
-                <div style="display: flex; flex-direction: column; justify-content: space-around;">
-                    <div>
-                        <mat-card-title style="margin-bottom: 20px;">{{student.name}}
-                            {{student.surname}}</mat-card-title>
-                        <mat-card-subtitle style="margin-bottom: 10px;">Teléfono: {{student.phone}}</mat-card-subtitle>
-                        <mat-card-subtitle style="margin-bottom: 10px;">Email: {{student.email}}</mat-card-subtitle>
-                        <mat-card-subtitle style="margin-bottom: 10px;">Contraseña:
-                            {{student.password}}</mat-card-subtitle>
+<ng-container *ngIf="!showSpinner">
+    <div>
+        <button routerLink=".." mat-icon-button color="accent">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <mat-card class="center-card" *ngIf="student" style="width: 500px;">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                        <div>
+                            <mat-card-title style="margin-bottom: 20px;">{{student.name}}
+                                {{student.surname}}</mat-card-title>
+                            <mat-card-subtitle style="margin-bottom: 10px;">Teléfono:
+                                {{student.phone}}</mat-card-subtitle>
+                            <mat-card-subtitle style="margin-bottom: 10px;">Email: {{student.email}}</mat-card-subtitle>
+                            <mat-card-subtitle style="margin-bottom: 10px;">Contraseña:
+                                {{student.password}}</mat-card-subtitle>
+                        </div>
+                        <div>
+                            <label for="fileInput" class="custom-file-upload">
+                                Seleccionar imagen
+                            </label>
+                            <input type="file" id="fileInput" (change)="onFileSelected($event)">
+                        </div>
                     </div>
-                    <div>
-                        <label for="fileInput" class="custom-file-upload">
-                            Seleccionar imagen
-                        </label>
-                        <input type="file" id="fileInput" (change)="onFileSelected($event)">
+                    <div *ngIf="selectedImage">
+                        <img [src]="getImageUrl()" alt="Selected" style="width: 250px;">
                     </div>
-                </div>
-                <div *ngIf="!selectedImage">
-                    <img mat-card-xl-image
-                        src="https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg"
-                        alt="Default" style="width: 250px;">
-                </div>
-                <div *ngIf="selectedImage">
-                    <img [src]="getImageUrl()" alt="Selected" style="width: 250px;">
-                </div>
-            </mat-card-title-group>
-        </mat-card-header>
-    </mat-card>
-</div>
+                </mat-card-title-group>
+            </mat-card-header>
+        </mat-card>
+    </div>
+</ng-container>

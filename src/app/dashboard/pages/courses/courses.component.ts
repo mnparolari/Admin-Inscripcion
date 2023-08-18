@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Courses } from './models/courses';
+import { Course } from './models/course';
 import { CoursesService } from './services/courses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
@@ -8,6 +8,8 @@ import { NotifierService } from 'src/app/core/services/notifier.service';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { Store } from '@ngrx/store';
+import { selectAuthIsAdmin } from 'src/app/store/auth/auth.selectors';
 
 
 @Component({
@@ -17,18 +19,21 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
 })
 export class CoursesComponent implements OnInit, OnDestroy {
 
-  public courses$: Observable<Courses[]>;
+  public courses$: Observable<Course[]>;
   showSpinner = true;
   private subscription!: Subscription;
+  public admin$: Observable<boolean>;
 
-  constructor(public dialog: MatDialog, private coursesService: CoursesService, private notifier: NotifierService, private datePipe: DatePipe, private spinner: SpinnerService) {
+  constructor(public dialog: MatDialog, private coursesService: CoursesService, private notifier: NotifierService, private datePipe: DatePipe, private spinner: SpinnerService, private store: Store) {
     this.courses$ = this.coursesService.getCourses();
+    this.admin$ = this.store.select(selectAuthIsAdmin)
   }
 
   ngOnInit(): void {
     this.subscription = this.spinner.getSpinner().subscribe((show: boolean) => {
       this.showSpinner = show;
     });
+    this.spinner.show();
     this.coursesService.loadCourses();
     this.spinner.hide();
   };
@@ -71,7 +76,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
     return formattedDate || '';
   }
 
-  onDeleteCourse(courseToDelete: Courses): void {
+  onDeleteCourse(courseToDelete: Course): void {
     Swal.fire({
       title: `¿Estás seguro que queres eliminar el curso de <span style = "color: #F44336">${courseToDelete.name}</span>?`,
       text: 'Esta acción no se puede deshacer',
@@ -89,7 +94,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
     });
   }
 
-  onEditCourse(courseToEdit: Courses): void {
+  onEditCourse(courseToEdit: Course): void {
     this.dialog
       .open(CoursesDialogComponent, {
         data: courseToEdit
@@ -100,7 +105,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
           if (courseUpdated) {
             const formattedCourseFrom = courseUpdated.courseFrom.toLocaleDateString('es-AR');
             const formattedCourseTo = courseUpdated.courseTo.toLocaleDateString('es-AR');
-            const updatedCourseData: Courses = {
+            const updatedCourseData: Course = {
               ...courseUpdated,
               courseFrom: formattedCourseFrom,
               courseTo: formattedCourseTo

@@ -1,0 +1,80 @@
+<div *ngIf="showSpinner" class="spinner-container">
+    <mat-spinner color="accent" diameter="50"></mat-spinner>
+</div>
+
+<ng-container *ngIf="!showSpinner">
+    <div style="display: flex; justify-content: left; align-items: start;">
+        <button routerLink=".." mat-icon-button color="accent">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <p style="text-decoration: underline; margin-top: 20px; text-align: center;" appFontSize>Noticias</p>
+        <div style="display: flex; justify-content: center;">
+            <mat-card class="example-card" style="width: 480px; margin: 30px; ">
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                    <iframe
+                        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7095506728724668416?compact=1"
+                        height="399" width="710" frameborder="0" allowfullscreen=""
+                        title="Publicación integrada"></iframe>
+                </div>
+                <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+                <h5 style="margin-left: 15px;">Despegamos en octubre con la 4ta edición de #CoderConf ✈️ <br>
+                    Evento online y presencial, 100% gratuito, con speakers expertos en IT, workshops y mucho más.
+                    🚀<br>
+                    ¿Cuál es su próximo destino? Señores pasajeros, les espera un viaje con mucha turbulencia 😏</h5>
+            </mat-card>
+            <mat-card class="example-card" style="width: 480px; margin: 30px;">
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                    <iframe
+                        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7095138487925977088?compact=1"
+                        height="399" width="710" frameborder="0" allowfullscreen=""
+                        title="Publicación integrada"></iframe>
+                </div>
+                <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+                <h5 style="margin-left: 15px;">Ahora nos vemos más humanos y más disruptivos. Les presentamos
+                    oficialmente nuestro nuevo branding 😏 <br>
+                    Decidimos marcar una nueva era en la educación, desafiando todas las reglas y rompiendo los moldes.
+                    ¿Quién dijo que el aprendizaje tiene que ser aburrido y limitado?<br>
+                    Sigamos transformando la realidad, sin límites ni barreras. 💪🌎</h5>
+            </mat-card>
+        </div>
+        <div>
+            <h4 style="text-decoration: underline; margin-top: 20px; text-align: left; margin-left: 30px;">Webinar</h4>
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <mat-card class="example-card" style="width: 310px; margin: 30px;">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                        <iframe width="300" height="200" src="https://www.youtube.com/embed/26qsU1fhJbs"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+                    <h5 style="margin-left: 15px;">De Jr a Sr. Las claves para un buen desarrollo profesional con Manu
+                        Casaubon</h5>
+                </mat-card>
+                <mat-card class="example-card" style="width: 310px; margin: 30px;">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                        <iframe width="300" height="200" src="https://www.youtube.com/embed/WA2-cLf5JGE"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+                    <h5 style="margin-left: 15px;">Media Kit para Diseñadores: Qué cosas tener en cuenta para crearlo y
+                        trabajar con marcas</h5>
+                </mat-card>
+                <mat-card class="example-card" style="width: 310px; margin: 30px;">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                        <iframe width="300" height="200" src="https://www.youtube.com/embed/yKf9TniaGT0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <hr style="border-color: #e8ff3c; margin-top: 5px; margin-bottom: 5px;">
+                    <h5 style="margin-left: 15px;">IA como herramienta de trabajo. Aprende a optimizar tus tareas</h5>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</ng-container>

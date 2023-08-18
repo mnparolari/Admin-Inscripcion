@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { LoginPayload } from '../models/auth';
-import { BehaviorSubject, Observable, map } from 'rxjs';
-import { Users } from 'src/app/dashboard/pages/users/models/user';
+import { Observable, map } from 'rxjs';
+import { User } from 'src/app/dashboard/pages/users/models/user';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Store } from '@ngrx/store';
+import { authActions } from 'src/app/store/auth/auth.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private authUser$ = new BehaviorSubject<Users | null>(null);
-  public _authUser$ = this.authUser$.asObservable();
-
-  constructor(private notifier: NotifierService, private httpClient: HttpClient, private router: Router) { }
+  constructor(private notifier: NotifierService, private httpClient: HttpClient, private router: Router, private store: Store) { }
 
   autentification(): Observable<boolean> {
-    return this.httpClient.get<Users[]>(environment.baseApiUrl + '/users', {
+    return this.httpClient.get<User[]>(environment.baseApiUrl + '/users', {
       params: {
         token: localStorage.getItem('token') || '',
       }
@@ -26,7 +25,7 @@ export class AuthService {
       map((result) => {
         if (result.length) {
           const authUser = result[0];
-          this.authUser$.next(authUser);
+          this.store.dispatch(authActions.setAuthUser({payload: authUser}));
         }
         return !!result.length
       })
@@ -34,7 +33,7 @@ export class AuthService {
   };
 
   login(payload: LoginPayload): void {
-    this.httpClient.get<Users[]>(environment.baseApiUrl + '/users', {
+    this.httpClient.get<User[]>(environment.baseApiUrl + '/users', {
       params: {
         email: payload.email || '',
         password: payload.password || ''
@@ -43,12 +42,12 @@ export class AuthService {
       next: (response) => {
         if (response.length) {
           const authUser = response[0];
-          this.authUser$.next(authUser);
+          this.store.dispatch(authActions.setAuthUser({payload: authUser}));
           this.router.navigate(['/dashboard']);
           localStorage.setItem('token', authUser.token);
         } else {
           this.notifier.showError('Usuario o contraseña inválida', 'Intentá nuevamente');
-          this.authUser$.next(null);
+          this.store.dispatch(authActions.setAuthUser({payload: null}));
         }
       },
       error: (err) => {
@@ -61,4 +60,8 @@ export class AuthService {
       }
     })
   };
+
+  public logout(): void {
+    this.store.dispatch(authActions.setAuthUser({payload: null}));
+  }
 }
