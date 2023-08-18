@@ -85,11 +85,11 @@ export const reducer = createReducer(
   on(InscriptionActions.loadDeleteInscription, (state, { data }) => ({
     ...state,
     data: state.data.filter(inscription => inscription.id !== data)
-  })),  
+  })),
 
   on(InscriptionActions.loadUpdateInscriptionSuccess, (state, action) => {
     const updatedInscription = action.data;
-    
+
     const updatedData = state.data.map(inscription => {
       if (inscription.id === updatedInscription.id) {
         const updatedDataInscription: DataInscription = {
@@ -101,7 +101,7 @@ export const reducer = createReducer(
       }
       return inscription;
     });
-    
+
     return {
       ...state,
       data: updatedData

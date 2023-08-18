@@ -36,7 +36,8 @@
             <button [routerLink]="user.id" mat-icon-button color="accent" style="margin-right: 1px;">
                 <mat-icon>visibility</mat-icon>
             </button>
-            <button (click)="deleteUser.emit(user)" mat-icon-button color="warn" style="margin-left: 1px; margin-right: 1px;">
+            <button (click)="deleteUser.emit(user)" mat-icon-button color="warn"
+                style="margin-left: 1px; margin-right: 1px;">
                 <mat-icon>delete</mat-icon>
             </button>
             <button (click)="editUser.emit(user)" mat-icon-button color="accent" style="margin-right: 1px;">

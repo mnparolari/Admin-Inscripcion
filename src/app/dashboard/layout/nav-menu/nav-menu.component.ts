@@ -12,7 +12,7 @@ import { selectAuthIsAdmin } from 'src/app/store/auth/auth.selectors';
 })
 export class NavMenuComponent {
 
-public selectAuthIsAdmin$: Observable<boolean>;
+  public selectAuthIsAdmin$: Observable<boolean>;
 
   constructor(private router: Router, private authService: AuthService, private store: Store) {
     this.selectAuthIsAdmin$ = this.store.select(selectAuthIsAdmin)

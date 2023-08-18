@@ -58,7 +58,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
       const file = input.files[0];
-  
+
       const reader = new FileReader();
       reader.onload = (e) => {
         if (this.user) {
@@ -75,14 +75,14 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   saveUserImage(): void {
     if (this.userId !== undefined) {
       this.userService.updateUserImage(this.userId, this.selectedImage)
-      .subscribe(
-        () => {
-          this.notifier.showSucces('Imagen cargada correctamente', 'Esta será la foto de perfil.');
-        },
-        () => {
-          this.notifier.showError('Error', 'No se pudo cargar la imagen solicitada. Volvé a intentar.');
-        }
-      );
+        .subscribe(
+          () => {
+            this.notifier.showSucces('Imagen cargada correctamente', 'Esta será la foto de perfil.');
+          },
+          () => {
+            this.notifier.showError('Error', 'No se pudo cargar la imagen solicitada. Volvé a intentar.');
+          }
+        );
     }
   }
 

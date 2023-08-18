@@ -18,8 +18,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class InscriptionsTableComponent {
   displayedColumns: string[] = ['icon', 'name', 'commission', 'teacher', 'students', 'actions'];
   inscriptions$: Observable<DataInscription[]>
-  
-  constructor(private store: Store, private notifier: NotifierService,  public dialog: MatDialog){
+
+  constructor(private store: Store, private notifier: NotifierService, public dialog: MatDialog) {
     this.inscriptions$ = this.store.select(selectInscriptions)
   }
 
@@ -45,7 +45,7 @@ export class InscriptionsTableComponent {
     const dialogRef = this.dialog.open(InscriptionsDialogComponent, {
       data: { inscription, isEditing: true }
     });
-  
+
     dialogRef.afterClosed().subscribe(updatedInscription => {
       if (updatedInscription) {
         this.store.dispatch(InscriptionActions.loadUpdateInscription({ payload: updatedInscription }));

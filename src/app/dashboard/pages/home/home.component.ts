@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   showSpinner = true;
   private subscription!: Subscription;
 
-  constructor(private spinner: SpinnerService) {}
+  constructor(private spinner: SpinnerService) { }
 
   ngOnInit(): void {
     this.subscription = this.spinner.getSpinner().subscribe((show: boolean) => {

@@ -34,7 +34,7 @@ export class UserServiceService {
 
   createdUser(user: User): void {
     const token = generateToken(22)
-    this.httpClient.post<User>(environment.baseApiUrl + '/users', {... user, token})
+    this.httpClient.post<User>(environment.baseApiUrl + '/users', { ...user, token })
       .pipe(
         mergeMap((userCreated) => this.users$.pipe(
           take(1),

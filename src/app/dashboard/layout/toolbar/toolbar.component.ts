@@ -15,7 +15,7 @@ export class ToolbarComponent {
   @Input()
   public drawer?: MatDrawer;
 
-  public authUser$: Observable<User | null> 
+  public authUser$: Observable<User | null>
 
   constructor(private store: Store) {
     this.authUser$ = this.store.select(selectAuthUser);

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription, map, tap } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { DataInscription } from '../../models/inscription';
 import { Store } from '@ngrx/store';
 import { selectInscriptions } from '../../store/inscription.selectors';
@@ -11,15 +11,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './inscriptions-detail.component.html',
   styleUrls: ['./inscriptions-detail.component.scss']
 })
-export class InscriptionsDetailComponent implements OnInit, OnDestroy{
+export class InscriptionsDetailComponent implements OnInit, OnDestroy {
   inscriptions$: Observable<DataInscription[]>;
   showSpinner = true;
   private subscription!: Subscription;
   public inscriptionId?: number;
   public selectedInscription$: Observable<DataInscription | undefined>;
 
-  
-  constructor(private store: Store, private spinner: SpinnerService, private activatedRoute: ActivatedRoute, private router: Router){
+
+  constructor(private store: Store, private spinner: SpinnerService, private activatedRoute: ActivatedRoute, private router: Router) {
     if (!Number(this.activatedRoute.snapshot.paramMap.get('id'))) {
       this.router.navigate(['dashboard', 'inscriptions']);
     } else {
@@ -40,7 +40,7 @@ export class InscriptionsDetailComponent implements OnInit, OnDestroy{
       this.spinner.hide();
     });
   }
-  
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   };

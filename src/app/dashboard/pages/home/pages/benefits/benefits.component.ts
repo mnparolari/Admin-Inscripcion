@@ -4,7 +4,7 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
 
 export interface Benefits {
   name: string,
-  img: string, 
+  img: string,
   description: string,
   link: string
 }

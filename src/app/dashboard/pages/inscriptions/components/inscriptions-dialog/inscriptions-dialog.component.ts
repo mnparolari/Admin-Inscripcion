@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Inscription } from '../../models/inscription';
 import { Store } from '@ngrx/store';
 import { InscriptionActions } from '../../store/inscription.actions';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Course } from '../../../courses/models/course';
 import { selectCoursesOptions, selectStudentsOptions } from '../../store/inscription.selectors';
 import { Student } from '../../../students/models/student';

@@ -2,7 +2,7 @@ import { Course } from "../../courses/models/course";
 import { Student } from "../../students/models/student"
 
 export interface Inscription {
-    id: number, 
+    id: number,
     courseId: number,
     studentId: number
 }

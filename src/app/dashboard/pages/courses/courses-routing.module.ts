@@ -13,11 +13,11 @@ import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.co
       {
         path: '',
         component: CoursesComponent
-    },
-    {
+      },
+      {
         path: ':id',
         component: CoursesDetailComponent,
-    }
+      }
     ])
   ],
   exports: [RouterModule]

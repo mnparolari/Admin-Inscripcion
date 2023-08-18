@@ -6,10 +6,10 @@
         <p style="text-decoration: underline; margin-top: 20px;" appFontSize>Cursos</p>
         <div>
             <app-courses-table [dataSource]="(courses$ | async) || []" (deleteCourse)="onDeleteCourse($event)"
-            (editCourse)="onEditCourse($event)"></app-courses-table>
+                (editCourse)="onEditCourse($event)"></app-courses-table>
             <div style="margin-top: 50px; text-align: right; margin-right: 10px;">
-                <button [hidden]="!(admin$ | async)" mat-raised-button style="background-color: #e8ff3c; color: #000" (click)="onCreateCourse()"
-                    type="button">Crear curso</button>
+                <button [hidden]="!(admin$ | async)" mat-raised-button style="background-color: #e8ff3c; color: #000"
+                    (click)="onCreateCourse()" type="button">Crear curso</button>
             </div>
         </div>
     </ng-container>

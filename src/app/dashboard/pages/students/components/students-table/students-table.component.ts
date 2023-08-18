@@ -16,7 +16,7 @@ export class StudentsTableComponent {
   constructor(private store: Store) {
     this.admin$ = this.store.select(selectAuthIsAdmin)
   }
-  
+
   @Input()
   dataSource: Student[] = [];
 

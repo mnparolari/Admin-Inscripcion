@@ -16,7 +16,7 @@ export class LoginComponent {
     password: this.passwordControl,
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   login(): void {
     if (this.loginForm.invalid) {

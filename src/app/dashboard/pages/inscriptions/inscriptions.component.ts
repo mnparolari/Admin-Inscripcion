@@ -5,8 +5,6 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
 import { InscriptionActions } from './store/inscription.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { InscriptionsDialogComponent } from './components/inscriptions-dialog/inscriptions-dialog.component';
-import { DataInscription, Inscription } from './models/inscription';
-import Swal from 'sweetalert2';
 import { InscriptionService } from './services/inscription.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 

@@ -16,7 +16,7 @@ import { PieChartComponent } from './pages/analytics/components/pie-chart/pie-ch
 import { HomeRoutingModule } from './home-routing.module';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [

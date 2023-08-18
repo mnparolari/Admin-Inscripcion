@@ -5,7 +5,6 @@ import { of } from 'rxjs';
 import { InscriptionActions } from './inscription.actions';
 import { InscriptionService } from '../services/inscription.service';
 import { Store } from '@ngrx/store';
-import { Inscription } from '../models/inscription';
 
 
 @Injectable()

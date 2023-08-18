@@ -29,7 +29,7 @@ export class NotifierService {
   showError(title: string, message: string): void {
     this.notifier$.next({
       type: 'error',
-      title, 
+      title,
       message
     })
   }

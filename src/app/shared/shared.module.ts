@@ -4,7 +4,6 @@ import { FullNamePipe } from './pipes/full-name.pipe';
 import { FontSizeDirective } from './directives/font-size.directive';
 
 
-
 @NgModule({
   declarations: [
     FullNamePipe,

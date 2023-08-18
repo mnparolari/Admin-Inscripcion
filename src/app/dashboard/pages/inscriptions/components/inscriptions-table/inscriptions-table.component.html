@@ -3,7 +3,8 @@
     <ng-container matColumnDef="icon" style="text-align: center;">
         <th mat-header-cell *matHeaderCellDef>Curso</th>
         <td style="display: flex; justify-content: center; align-items: center;">
-            <img style="width: 40px; padding-top: 7px; " *matCellDef="let inscription" src={{inscription.course.icon}} alt="">
+            <img style="width: 40px; padding-top: 7px; " *matCellDef="let inscription" src={{inscription.course.icon}}
+                alt={{inscription.course.name}}>
         </td>
     </ng-container>
 
@@ -33,7 +34,8 @@
             <button [routerLink]="inscription.id" mat-icon-button color="accent" style="margin-right: 1px;">
                 <mat-icon>visibility</mat-icon>
             </button>
-            <button (click)="onDeleteInscription(inscription.id)" mat-icon-button color="warn" style="margin-left: 1px; margin-right: 1px;">
+            <button (click)="onDeleteInscription(inscription.id)" mat-icon-button color="warn"
+                style="margin-left: 1px; margin-right: 1px;">
                 <mat-icon>delete</mat-icon>
             </button>
             <button (click)="onEditInscription(inscription)" mat-icon-button color="accent" style="margin-right: 1px;">

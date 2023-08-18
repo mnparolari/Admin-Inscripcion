@@ -12,9 +12,9 @@ const initialState: AuthState = {
     authUser: null
 }
 
-export const authReducer = createReducer(initialState, 
+export const authReducer = createReducer(initialState,
     on(authActions.setAuthUser, (currentState, action) => {
-    return {
-        authUser: action.payload
-    }
-}))
+        return {
+            authUser: action.payload
+        }
+    }))

@@ -5,7 +5,6 @@ import { UsersComponent } from './users.component';
 import { UserDetailComponent } from './pages/users-detail/user-detail.component';
 
 
-
 @NgModule({
   declarations: [],
   imports: [

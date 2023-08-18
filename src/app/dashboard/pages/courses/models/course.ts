@@ -9,7 +9,7 @@ export interface Course {
 }
 
 export interface iconCourse {
-    icon: string, 
+    icon: string,
     name: string,
     category: string
 }

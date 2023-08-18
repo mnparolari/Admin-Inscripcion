@@ -34,7 +34,7 @@ import { InscriptionsDetailComponent } from './pages/inscriptions-detail/inscrip
   imports: [
     CommonModule,
     SharedModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     InscriptionRoutingModule,
     RouterModule,

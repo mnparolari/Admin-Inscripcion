@@ -4,7 +4,7 @@
             <ng-template matStepLabel>Datos personales</ng-template>
             <mat-form-field color="accent" class="mat-form" appearance="outline">
                 <mat-label>Nombre</mat-label>
-                <input  matInput [formControl]="name" name="name" required>
+                <input matInput [formControl]="name" name="name" required>
                 <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
                 <mat-icon matSuffix>badge</mat-icon>
             </mat-form-field>
@@ -48,9 +48,11 @@
                 </button>
                 <mat-hint>Entre 8 y 15 carácteres.</mat-hint>
             </mat-form-field>
-            <div class="btn-form" >
-                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
-                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperNext>Siguiente</button>
+            <div class="btn-form">
+                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000"
+                    matStepperPrevious>Anterior</button>
+                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000"
+                    matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
@@ -65,8 +67,10 @@
                 <mat-error *ngIf="userType.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
             <div class="btn-form" color="primary">
-                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
-                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperNext>Siguiente</button>
+                <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000"
+                    matStepperPrevious>Anterior</button>
+                <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000"
+                    matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
@@ -75,21 +79,29 @@
         <p style="font-weight: 500; text-align: center; font-size: 1rem;">Los datos declarados son:</p>
         <div class="data-form">
             <div style="display: flex; justify-content: space-around; flex-direction: column;">
-                <p><span style= "font-weight: 700; text-decoration: underline;">Nombre:</span> {{userForm.value.name}}</p>
-                <p><span style= "font-weight: 700; text-decoration: underline;">Apellido:</span> {{userForm.value.surname}}</p>
-                <p><span style= "font-weight: 700; text-decoration: underline;">Teléfono:</span> {{userForm.value.phone}}</p>
+                <p><span style="font-weight: 700; text-decoration: underline;">Nombre:</span> {{userForm.value.name}}
+                </p>
+                <p><span style="font-weight: 700; text-decoration: underline;">Apellido:</span>
+                    {{userForm.value.surname}}</p>
+                <p><span style="font-weight: 700; text-decoration: underline;">Teléfono:</span> {{userForm.value.phone}}
+                </p>
             </div>
             <div style="display: flex; justify-content: space-around; flex-direction: column;">
-                <p><span style= "font-weight: 700; text-decoration: underline;">Usuario:</span> {{userForm.value.email}}</p>
-                <p><span style= "font-weight: 700; text-decoration: underline;">Contraseña:</span> {{userForm.value.password}}</p>
+                <p><span style="font-weight: 700; text-decoration: underline;">Usuario:</span> {{userForm.value.email}}
+                </p>
+                <p><span style="font-weight: 700; text-decoration: underline;">Contraseña:</span>
+                    {{userForm.value.password}}</p>
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
-                <p><span style= "font-weight: 700; text-decoration: underline;">Tipo de usuario:</span> {{userForm.value.userType}}</p>
+                <p><span style="font-weight: 700; text-decoration: underline;">Tipo de usuario:</span>
+                    {{userForm.value.userType}}</p>
             </div>
         </div>
         <div class="btn-form">
-            <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000" matStepperPrevious>Anterior</button>
-            <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" (click)="onSubmit()" type="submit">Confirmar</button>
+            <button class="btn-previous" mat-flat-button style="background-color: #e8ff3c; color: #000"
+                matStepperPrevious>Anterior</button>
+            <button class="btn-next" mat-flat-button style="background-color: #e8ff3c; color: #000" (click)="onSubmit()"
+                type="submit">Confirmar</button>
         </div>
     </mat-step>
 </mat-stepper>

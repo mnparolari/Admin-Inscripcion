@@ -25,7 +25,7 @@ export class AuthService {
       map((result) => {
         if (result.length) {
           const authUser = result[0];
-          this.store.dispatch(authActions.setAuthUser({payload: authUser}));
+          this.store.dispatch(authActions.setAuthUser({ payload: authUser }));
         }
         return !!result.length
       })
@@ -42,12 +42,12 @@ export class AuthService {
       next: (response) => {
         if (response.length) {
           const authUser = response[0];
-          this.store.dispatch(authActions.setAuthUser({payload: authUser}));
+          this.store.dispatch(authActions.setAuthUser({ payload: authUser }));
           this.router.navigate(['/dashboard']);
           localStorage.setItem('token', authUser.token);
         } else {
           this.notifier.showError('Usuario o contraseña inválida', 'Intentá nuevamente');
-          this.store.dispatch(authActions.setAuthUser({payload: null}));
+          this.store.dispatch(authActions.setAuthUser({ payload: null }));
         }
       },
       error: (err) => {
@@ -62,6 +62,6 @@ export class AuthService {
   };
 
   public logout(): void {
-    this.store.dispatch(authActions.setAuthUser({payload: null}));
+    this.store.dispatch(authActions.setAuthUser({ payload: null }));
   }
 }

@@ -95,6 +95,6 @@ export class UsersComponent implements OnInit, OnDestroy {
             this.notifier.showSucces('Usuario modificado', 'El usuario se modificó correctamente')
           }
         }
-      })
+      });
   }
 }

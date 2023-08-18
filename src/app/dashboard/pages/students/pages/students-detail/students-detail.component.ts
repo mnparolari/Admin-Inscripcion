@@ -57,7 +57,7 @@ export class StudentsDetailComponent implements OnInit, OnDestroy {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
       const file = input.files[0];
-  
+
       const reader = new FileReader();
       reader.onload = (e) => {
         if (this.student) {
@@ -73,19 +73,19 @@ export class StudentsDetailComponent implements OnInit, OnDestroy {
   saveStudentImage(): void {
     if (this.studentId !== undefined) {
       this.studentService.updateStudentImage(this.studentId, this.selectedImage)
-      .pipe(
-        tap(
-          () => {
-            this.notifier.showSucces('Imagen cargada correctamente', 'Esta será la foto de perfil.');
-          },
-          () => {
-            this.notifier.showError('Error', 'No se pudo cargar la imagen solicitada. Volvé a intentar.');
-          }
+        .pipe(
+          tap(
+            () => {
+              this.notifier.showSucces('Imagen cargada correctamente', 'Esta será la foto de perfil.');
+            },
+            () => {
+              this.notifier.showError('Error', 'No se pudo cargar la imagen solicitada. Volvé a intentar.');
+            }
+          )
         )
-      )
-      .subscribe();
+        .subscribe();
+    }
   }
-}
 
 
   getImageUrl(): string {

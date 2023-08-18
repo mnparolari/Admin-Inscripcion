@@ -62,7 +62,7 @@ export class BarChartComponent {
     console.log(event, active);
   }
 
-    public randomize(): void {
-      this.barChartType = this.barChartType === 'bar' ? 'line' : 'bar';
-    }
+  public randomize(): void {
+    this.barChartType = this.barChartType === 'bar' ? 'line' : 'bar';
+  }
 }

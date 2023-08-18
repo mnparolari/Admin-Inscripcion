@@ -20,7 +20,7 @@ import { User } from '../../models/user';
 export class UserDialogComponent {
   editingUser?: User;
   hide = true;
-  
+
   name = new FormControl<string | ''>('', [Validators.required, Validators.minLength(2)]);
   surname = new FormControl<string | ''>('', [Validators.required]);
   phone = new FormControl<string | ''>('', [Validators.required, Validators.maxLength(12)]);
@@ -85,5 +85,5 @@ export class UserDialogComponent {
       this.dialogRef.close(payloadToken);
     }
   };
-  
+
 }

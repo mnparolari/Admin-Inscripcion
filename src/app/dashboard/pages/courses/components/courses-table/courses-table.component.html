@@ -3,7 +3,8 @@
     <ng-container matColumnDef="icon" style="text-align: center;">
         <th mat-header-cell *matHeaderCellDef>Curso</th>
         <td style="display: flex; justify-content: center; align-items: center;">
-            <img style="width: 40px; padding-top: 5px; " *matCellDef="let courses" src={{courses.icon}} alt="{{courses.name}}">
+            <img style="width: 40px; padding-top: 5px; " *matCellDef="let courses" src={{courses.icon}}
+                alt="{{courses.name}}">
         </td>
     </ng-container>
 
@@ -43,10 +44,12 @@
             <button [routerLink]="courses.id" mat-icon-button color="accent" style="margin-right: 1px;">
                 <mat-icon>visibility</mat-icon>
             </button>
-            <button [hidden]="!(admin$ | async)" (click)="deleteCourse.emit(courses)" mat-icon-button color="warn" style="margin-left: 1px; margin-right: 1px;">
+            <button [hidden]="!(admin$ | async)" (click)="deleteCourse.emit(courses)" mat-icon-button color="warn"
+                style="margin-left: 1px; margin-right: 1px;">
                 <mat-icon>delete</mat-icon>
             </button>
-            <button [hidden]="!(admin$ | async)" (click)="editCourse.emit(courses)" mat-icon-button color="accent" style="margin-right: 1px;">
+            <button [hidden]="!(admin$ | async)" (click)="editCourse.emit(courses)" mat-icon-button color="accent"
+                style="margin-right: 1px;">
                 <mat-icon>edit</mat-icon>
             </button>
         </td>
