@@ -67,8 +67,8 @@
       "name": "Figma",
       "category": "Diseño UX/UI",
       "teacher": "Guadalupe Oliver",
-      "courseFrom": "05/10/2023",
-      "courseTo": "31/12/2023",
+      "courseFrom": "05/06/2023",
+      "courseTo": "15/09/2023",
       "id": 5
     }
   ],
@@ -80,7 +80,7 @@
     },
     {
       "id": 2,
-      "courseId": 5,
+      "courseId": 1,
       "studentId": 2
     }
   ]

@@ -14,7 +14,7 @@ export class StudentsTableComponent {
   public admin$: Observable<boolean>;
 
   constructor(private store: Store) {
-    this.admin$ = this.store.select(selectAuthIsAdmin)
+    this.admin$ = this.store.select(selectAuthIsAdmin);
   }
 
   @Input()

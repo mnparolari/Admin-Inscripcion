@@ -2,9 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Student } from '../../models/student';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentsService } from '../../services/students.service';
-import { Subscription, tap } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { Store } from '@ngrx/store';
+import { selectAuthIsAdmin } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-students-detail',
@@ -17,14 +19,16 @@ export class StudentsDetailComponent implements OnInit, OnDestroy {
   public selectedImage: string = '';
   showSpinner = true;
   private subscription!: Subscription;
+  public admin$: Observable<boolean>;
 
-  constructor(private activatedRoute: ActivatedRoute, private studentService: StudentsService, private router: Router, private spinner: SpinnerService, private notifier: NotifierService) {
+  constructor(private activatedRoute: ActivatedRoute, private studentService: StudentsService, private router: Router, private spinner: SpinnerService, private notifier: NotifierService, private store: Store) {
     if (!Number(this.activatedRoute.snapshot.paramMap.get('id'))) {
       this.router.navigate(['dashboard', 'students']);
     } else {
       this.studentId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
       this.studentDetail();
     }
+    this.admin$ = this.store.select(selectAuthIsAdmin)
   };
 
   ngOnInit(): void {

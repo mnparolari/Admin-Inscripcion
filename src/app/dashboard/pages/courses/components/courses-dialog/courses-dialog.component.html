@@ -32,7 +32,7 @@
                     <input matStartDate [formControl]="courseFrom" name="courseForm" placeholder="Desde">
                     <input matEndDate [formControl]="courseTo" name="courseTo" placeholder="Hasta">
                 </mat-date-range-input>
-                <mat-hint>DD/MM/AAAA – DD/MM/AAAA</mat-hint>
+                <mat-hint style="color: #fff;">DD/MM/AAAA – DD/MM/AAAA</mat-hint>
                 <mat-error *ngIf="courseFrom.invalid">{{getErrorMessage()}}</mat-error>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>

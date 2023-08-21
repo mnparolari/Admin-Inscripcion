@@ -21,7 +21,7 @@
                             <mat-card-subtitle style="margin-bottom: 10px;">Contraseña:
                                 {{student.password}}</mat-card-subtitle>
                         </div>
-                        <div>
+                        <div [hidden]="!(admin$ | async)">
                             <label for="fileInput" class="custom-file-upload">
                                 Seleccionar imagen
                             </label>
