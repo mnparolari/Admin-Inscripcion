@@ -1,6 +1,6 @@
 # Enrollment Manager Clone Coderhouse
 
-Este proyecto fue realizado con Angular CLI y la utilización de [JSON-Server](https://www.npmjs.com/package/json-server) como base de datos local. Se realizó un clon personalizado, utilizando lo estructural y lo programático de la plataforma eLearning de Coderhouse.
+Este proyecto fue realizado con [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0 y la utilización de [JSON-Server](https://www.npmjs.com/package/json-server) como base de datos local. Se realizó un clon personalizado, utilizando lo estructural y lo programático de la plataforma eLearning de Coderhouse.
 
 Datos necesarios para ingresar:
 
@@ -21,7 +21,7 @@ Ejecute `ngserve` para un servidor de desarrollo. Navegue hasta `http://localhos
 -----------------------------------------------------------------------------------------------------------------------
 # Enrollment Manager Clone Coderhouse
 
-This project was done with Angular CLI and the use of [JSON-Server](https://www.npmjs.com/package/json-server) as local database. A personalized clone was made, using the structural and programmatic aspects of the Coderhouse eLearning platform.
+This project was done with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0 and the use of [JSON-Server](https://www.npmjs.com/package/json-server) as local database. A personalized clone was made, using the structural and programmatic aspects of the Coderhouse eLearning platform.
 
 Necessary data to enter:
 
