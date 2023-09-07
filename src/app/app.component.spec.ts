@@ -14,9 +14,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'proyectofinal-angular-parolari'`, () => {
+  it(`should have as title 'enrollment-manager-clone-coderhouse'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('proyectofinal-angular-parolari');
+    expect(app.title).toEqual('enrollment-manager-clone-coderhouse');
   });
 });
