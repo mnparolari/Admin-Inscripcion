@@ -1,6 +1,6 @@
 # Enrollment Manager Clone Coderhouse
 
-Este proyecto fue realizado con Angular CLI y la utilización de JSON-Server(https://www.npmjs.com/package/json-server) como base de datos local. Se realizó un clon personalizado, utilizando lo estructural y lo programático de la plataforma eLearning de Coderhouse.
+Este proyecto fue realizado con Angular CLI y la utilización de [JSON-Server](https://www.npmjs.com/package/json-server) como base de datos local. Se realizó un clon personalizado, utilizando lo estructural y lo programático de la plataforma eLearning de Coderhouse.
 
 Datos necesarios para ingresar:
 
@@ -12,7 +12,7 @@ Datos necesarios para ingresar:
 - email: marge@gmail.com
 - pass: 123456789
 
-La arquitectura fue realizada con Angular Material[https://material.angular.io/].
+La arquitectura fue realizada con [Angular Material](https://material.angular.io/).
 
 ## Servidor de desarrollo
 
@@ -21,7 +21,7 @@ Ejecutar `ngserve` para un servidor de desarrollo. Navegar hasta `http://localho
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Enrollment Manager Clone Coderhouse
 
-This project was carried out with Angular CLI and the use of JSON-Server(https://www.npmjs.com/package/json-server) as local database. A personalized clone was made, using the structural and programmatic aspects of the Coderhouse eLearning platform.
+This project was carried out with Angular CLI and the use of [JSON-Server](https://www.npmjs.com/package/json-server) as local database. A personalized clone was made, using the structural and programmatic aspects of the Coderhouse eLearning platform.
 
 Necessary data to enter:
 
@@ -34,7 +34,7 @@ Necessary data to enter:
 - pass: 123456789
 
 
-The architecture was made with Angular Material[https://material.angular.io/].
+The architecture was made with [Angular Material](https://material.angular.io/).
 
 ## Development server
 
