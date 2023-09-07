@@ -3,6 +3,7 @@
 Este proyecto fue realizado con Angular CLI y la utilización de JSON-Server[https://www.npmjs.com/package/json-server] como base de datos local. Se realizó un clon personalizado, utilizando lo estructural y lo programático de la plataforma eLearning de Coderhouse.
 
 Datos necesarios para ingresar:
+
 #Admin:
 - email: homer@gmail.com
 - pass: 123456789
@@ -23,6 +24,7 @@ Ejecutar `ngserve` para un servidor de desarrollo. Navegar hasta `http://localho
 This project was carried out with Angular CLI and the use of JSON-Server[https://www.npmjs.com/package/json-server] as local database. A personalized clone was made, using the structural and programmatic aspects of the Coderhouse eLearning platform.
 
 Necessary data to enter:
+
 #Admin:
 - email: homer@gmail.com
 - pass: 123456789
