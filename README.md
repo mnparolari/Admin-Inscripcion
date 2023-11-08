@@ -104,7 +104,7 @@ Necessary data to enter:
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 
-##### Public [GitHub] repository(https://github.com/mnparolari/enrollment-manager-clone-coderhouse)
+##### Public [GitHub](https://github.com/mnparolari/enrollment-manager-clone-coderhouse) repository
 Instructions to clone project [here](https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository)
 
 -------------------------
