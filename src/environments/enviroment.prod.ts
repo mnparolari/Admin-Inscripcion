@@ -1,4 +1,4 @@
 export const environment = {
     prod: true,
-    baseApiUrl: 'http://localhost:3000'
+    baseApiUrl: 'https://json-server-api-enrollment-manager-clone.onrender.com/'
 }
